@@ -1,0 +1,81 @@
+package com.becelot.spacerace.player;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+
+import com.becelot.spacerace.SpaceConfig;
+import com.becelot.spacerace.dimension.DimensionTeleporter;
+import com.becelot.spacerace.team.Team;
+import com.becelot.spacerace.team.TeamManager;
+
+import cpw.mods.fml.common.IPlayerTracker;
+
+public class PlayerTracker implements IPlayerTracker {
+	
+	/*
+	 * Is called, when player logs into an ongoing match.
+	 * Kicks player, if he does not participate in this match.
+	 * Adds player to his team, if he participated earlier.
+	 */
+	private void playerLoginStarted(EntityPlayer player) {
+		if (player instanceof EntityPlayerMP) {
+			EntityPlayerMP playerMP = (EntityPlayerMP)player;
+			Team team = TeamManager.getInstance().getTeamByPlayerName(playerMP.getDisplayName());
+			
+			//Player is not part of any team
+			if (team == null) {
+				playerMP.playerNetServerHandler.kickPlayerFromServer("You do not participate in this match!");
+			}
+			
+			//Player is part of a team
+			team.registerTeamMember(playerMP);
+		}
+	}
+
+	@Override
+	public void onPlayerLogin(EntityPlayer player) {
+		switch (SpaceConfig.raceState) {
+			case SR_IDLE:
+				break;
+			case SR_PREPARING:
+				playerLoginPreparing(player);
+				break;
+			case SR_STARTED:
+				playerLoginStarted(player);
+				break;
+			default:
+				break;
+		}
+	}
+
+	/*
+	 * Player logged in, while the match is preparing.
+	 * He gets instantly teleported to the preparation dimension
+	 */
+	private void playerLoginPreparing(EntityPlayer player) {
+		if (player instanceof EntityPlayerMP) {
+			EntityPlayerMP playerMP = (EntityPlayerMP)player;
+			DimensionTeleporter.transferPlayerToDimension(playerMP, SpaceConfig.dimensionId);
+			
+		}
+		
+	}
+
+	@Override
+	public void onPlayerLogout(EntityPlayer player) {
+		
+	}
+
+	@Override
+	public void onPlayerChangedDimension(EntityPlayer player) {
+		
+	}
+
+	@Override
+	public void onPlayerRespawn(EntityPlayer player) {
+
+	}
+
+
+
+}

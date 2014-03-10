@@ -8,12 +8,10 @@ import net.minecraftforge.common.MinecraftForge;
 
 import com.becelot.spacerace.block.TeamSelectionBlock;
 import com.becelot.spacerace.block.TeamSelectionItemBlock;
-import com.becelot.spacerace.dimension.SpaceEnterCommand;
+import com.becelot.spacerace.command.GenericCommand;
 import com.becelot.spacerace.dimension.SpaceProvider;
 import com.becelot.spacerace.player.PlayerEvent;
 import com.becelot.spacerace.player.PlayerTracker;
-import com.becelot.spacerace.team.TeamRegisterCommand;
-import com.becelot.spacerace.team.TeamSendCommand;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -57,9 +55,7 @@ public class SpaceRaceMod {
 	
 	@EventHandler
 	public void serverLoad(FMLServerStartingEvent event) {
-		event.registerServerCommand(new SpaceEnterCommand());
-		event.registerServerCommand(new TeamSendCommand());
-		event.registerServerCommand(new TeamRegisterCommand());
+		GenericCommand.registerCommands(event);
 	}
 
 }

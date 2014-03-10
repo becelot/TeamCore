@@ -1,50 +1,23 @@
 package com.becelot.spacerace.team;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.packet.Packet3Chat;
 import net.minecraft.util.ChatMessageComponent;
 
-public class TeamRegisterCommand implements ICommand {
-	private List<String> aliases;
+import com.becelot.spacerace.command.ICommandHandler;
+
+public class TeamRegisterCommand implements ICommandHandler {
 	private TeamManager teamManager;
 	
 	private ChatMessageComponent invalidTeamNameMessage;
 
 	public TeamRegisterCommand() {
-		aliases = new ArrayList<>();
-		aliases.add("registerteam");
-		aliases.add("rt");
-		
 		teamManager = TeamManager.getInstance();
 		
 		invalidTeamNameMessage = new ChatMessageComponent();
 		invalidTeamNameMessage.addText("An error occured.");
 		invalidTeamNameMessage.addText("The team name is not valid!");
-	}
-	
-	@Override
-	public int compareTo(Object arg0) {
-		return 0;
-	}
-
-	@Override
-	public String getCommandName() {
-		return "registerTeam";
-	}
-
-	@Override
-	public String getCommandUsage(ICommandSender icommandsender) {
-		return "/registerteam <teamname>";
-	}
-
-	@Override
-	public List<String> getCommandAliases() {
-		return this.aliases;
 	}
 
 	@Override
@@ -68,22 +41,6 @@ public class TeamRegisterCommand implements ICommand {
 				}
 			}
 		}
-	}
-
-	@Override
-	public boolean canCommandSenderUseCommand(ICommandSender icommandsender) {
-		return true;
-	}
-
-	@Override
-	public List<String> addTabCompletionOptions(ICommandSender icommandsender,
-			String[] astring) {
-		return null;
-	}
-
-	@Override
-	public boolean isUsernameIndex(String[] astring, int i) {
-		return false;
 	}
 	
 }

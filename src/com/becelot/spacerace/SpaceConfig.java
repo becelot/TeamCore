@@ -9,4 +9,10 @@ public final class SpaceConfig {
 	
 	public static SpaceraceState raceState = SpaceraceState.SR_IDLE;
 	
+	public static int teamCount;
+	public static int minMemberCount;
+	public static int maxMemberCount;
+	
+	public static boolean setupTeams = false;
+	
 }

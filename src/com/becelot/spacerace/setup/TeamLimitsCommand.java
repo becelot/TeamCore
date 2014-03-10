@@ -25,6 +25,7 @@ public class TeamLimitsCommand extends CommandHandler {
 						MinecraftServer.getServer().getConfigurationManager().sendPacketToAllPlayers(new Packet3Chat(ChatMessageComponent.createFromText("[SERVER]: " + 
 								String.format(successfullSetup, SpaceConfig.teamCount, SpaceConfig.minMemberCount, SpaceConfig.maxMemberCount)), true));
 						SetupStructureBuilder.buildMidCage(MinecraftServer.getServer().worldServerForDimension(SpaceConfig.dimensionId));
+						SetupStructureBuilder.buildTeamSelection(MinecraftServer.getServer().worldServerForDimension(SpaceConfig.dimensionId));
 						return;
 					}
 				}

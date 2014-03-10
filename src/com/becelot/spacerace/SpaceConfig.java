@@ -7,7 +7,7 @@ public final class SpaceConfig {
 	public static String gameMod = "onlinefreak";
 	
 	public static final int dimensionId = 5;
-	public static int maxTeams = 4;
+	public static final int maxTeams = 7;
 	
 	public static SpaceraceState raceState = SpaceraceState.SR_IDLE;
 	public static TeamBuildPhase buildPhase = TeamBuildPhase.TBP_IDLE;

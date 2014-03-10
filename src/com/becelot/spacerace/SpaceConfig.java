@@ -1,5 +1,7 @@
 package com.becelot.spacerace;
 
+import com.becelot.spacerace.setup.TeamBuildPhase;
+
 public final class SpaceConfig {
 	public static int teamSelectionId = 500;
 	public static String gameMod = "onlinefreak";
@@ -8,11 +10,10 @@ public final class SpaceConfig {
 	public static int maxTeams = 4;
 	
 	public static SpaceraceState raceState = SpaceraceState.SR_IDLE;
+	public static TeamBuildPhase buildPhase = TeamBuildPhase.TBP_IDLE;
 	
-	public static int teamCount;
-	public static int minMemberCount;
-	public static int maxMemberCount;
-	
-	public static boolean setupTeams = false;
+	public static int teamCount = 4;
+	public static int minMemberCount = 2;
+	public static int maxMemberCount = 3;
 	
 }

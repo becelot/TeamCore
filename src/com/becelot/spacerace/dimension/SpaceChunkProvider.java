@@ -70,7 +70,6 @@ public class SpaceChunkProvider implements IChunkProvider {
 
 	@Override
 	public void populate(IChunkProvider ichunkprovider, int i, int j) {
-		// TODO Auto-generated method stub
 
 	}
 

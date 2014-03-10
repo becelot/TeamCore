@@ -4,9 +4,9 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ChatMessageComponent;
 
-import com.becelot.spacerace.command.ICommandHandler;
+import com.becelot.spacerace.command.CommandHandler;
 
-public class TeamSendCommand implements ICommandHandler {
+public class TeamSendCommand extends CommandHandler {
 	
 	ChatMessageComponent invalidUsageMessage;
 	ChatMessageComponent invalidTeamNameMessage;

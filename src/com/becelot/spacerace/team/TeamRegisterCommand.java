@@ -5,9 +5,9 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.packet.Packet3Chat;
 import net.minecraft.util.ChatMessageComponent;
 
-import com.becelot.spacerace.command.ICommandHandler;
+import com.becelot.spacerace.command.CommandHandler;
 
-public class TeamRegisterCommand implements ICommandHandler {
+public class TeamRegisterCommand extends CommandHandler {
 	private TeamManager teamManager;
 	
 	private ChatMessageComponent invalidTeamNameMessage;
@@ -20,7 +20,7 @@ public class TeamRegisterCommand implements ICommandHandler {
 		invalidTeamNameMessage.addText("The team name is not valid!");
 	}
 
-	@Override
+
 	public void processCommand(ICommandSender icommandsender, String[] astring) {
 		if (icommandsender instanceof EntityPlayerMP) {
 			EntityPlayerMP player = (EntityPlayerMP)icommandsender;

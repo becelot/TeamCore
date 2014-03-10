@@ -5,9 +5,9 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ChatMessageComponent;
 
 import com.becelot.spacerace.SpaceConfig;
-import com.becelot.spacerace.command.ICommandHandler;
+import com.becelot.spacerace.command.CommandHandler;
 
-public class SpaceEnterCommand implements ICommandHandler {
+public class SpaceEnterCommand extends CommandHandler {
 
 
 	public void processCommand(ICommandSender icommandsender, String[] astring) {

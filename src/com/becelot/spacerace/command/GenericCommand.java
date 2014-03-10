@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.becelot.spacerace.dimension.SpaceEnterCommand;
+import com.becelot.spacerace.setup.TeamLimitsCommand;
 import com.becelot.spacerace.team.TeamRegisterCommand;
 import com.becelot.spacerace.team.TeamSendCommand;
 
@@ -18,15 +19,16 @@ public class GenericCommand implements ICommand {
 	protected List<String> aliases;
 	private String commandName;
 	private String usage;
-	private ICommandHandler commandHandler;
+	private CommandHandler commandHandler;
 	
 	public static void registerCommands(FMLServerStartingEvent event) {
 		event.registerServerCommand(new GenericCommand("enter", "/enter", "enter,ent", SpaceEnterCommand.class));
 		event.registerServerCommand(new GenericCommand("registerteam", "/registerteam <teamname>", "registerteam,rt", TeamRegisterCommand.class));
 		event.registerServerCommand(new GenericCommand("teamsend", "/teamsend <teamname> <message>", "teamsend,ts", TeamSendCommand.class));
+		event.registerServerCommand(new GenericCommand("teamlimits", "/teamlimits <teamcount> <minMemberCount> <maxMemberCount>", "teamlimits", TeamLimitsCommand.class));
 	}
 	
-	public GenericCommand(String commandName, String usage, String aliases, Class<? extends ICommandHandler> clazz) {
+	public GenericCommand(String commandName, String usage, String aliases, Class<? extends CommandHandler> clazz) {
 		this.commandName = commandName;
 		this.usage = usage;
 		this.aliases = new ArrayList<String>();
@@ -43,7 +45,7 @@ public class GenericCommand implements ICommand {
 		}
 		try {
 			ctor.setAccessible(true);
-			this.commandHandler = (ICommandHandler)ctor.newInstance();
+			this.commandHandler = (CommandHandler)ctor.newInstance();
 		} catch (InstantiationException e) {
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
@@ -77,7 +79,7 @@ public class GenericCommand implements ICommand {
 	}
 
 	public boolean canCommandSenderUseCommand(ICommandSender icommandsender) {
-		return true;
+		return this.commandHandler.canCommandSenderUseCommand(icommandsender);
 	}
 
 	public List<?> addTabCompletionOptions(ICommandSender icommandsender,

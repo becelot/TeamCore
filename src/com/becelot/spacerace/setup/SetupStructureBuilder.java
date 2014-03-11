@@ -6,7 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.world.World;
 
 public class SetupStructureBuilder {
-	public static final int radius = 20;
+	public static final int radius = 10;
 	public static final int height = 5;
 	public static final int distance = 5;
 	
@@ -20,6 +20,14 @@ public class SetupStructureBuilder {
 			
 			for (int j = 0; j < height; j++) {
 				world.setBlock(x, j+1, y, Block.glass.blockID, 0, 1+2);
+			}
+		}
+		int rr = radius * radius;
+		for (int x = -radius; x <= radius; x++) {
+			for (int z = -radius; z <= radius; z++) {
+				if (x*x + z*z <= rr) {
+					world.setBlock(x,  height, z, Block.glass.blockID, 0, 1+2);
+				}
 			}
 		}
 		

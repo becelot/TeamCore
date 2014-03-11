@@ -20,6 +20,10 @@ public class Team {
 		this.teamName = teamName;
 	}
 	
+	public EntityPlayerMP getTeamLeader() {
+		return this.leader;
+	}
+	
 	
 	/*
 	 * Send an message to all TeamMembers

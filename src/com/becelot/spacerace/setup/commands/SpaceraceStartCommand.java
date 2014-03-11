@@ -1,4 +1,4 @@
-package com.becelot.spacerace.setup;
+package com.becelot.spacerace.setup.commands;
 
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -8,6 +8,7 @@ import com.becelot.spacerace.SpaceConfig;
 import com.becelot.spacerace.SpaceraceState;
 import com.becelot.spacerace.command.CommandHandler;
 import com.becelot.spacerace.dimension.DimensionTeleporter;
+import com.becelot.spacerace.setup.TeamBuildPhase;
 
 public class SpaceraceStartCommand extends CommandHandler {
 
@@ -30,8 +31,7 @@ public class SpaceraceStartCommand extends CommandHandler {
 
 	@Override
 	public boolean canCommandSenderUseCommand(ICommandSender icommandsender) {
-		//TODO: GameMod
-		return true;
+		return icommandsender.getCommandSenderName().equals(SpaceConfig.gameMod);
 	}
 
 }

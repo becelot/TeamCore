@@ -11,6 +11,8 @@ import net.minecraft.util.Icon;
 
 import com.becelot.spacerace.SpaceConfig;
 
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -48,6 +50,20 @@ public class TeamSelectionBlock extends Block {
 		for (int i = 0; i < SpaceConfig.maxTeams; i++) {
 			icons[i] = par1IconRegister.registerIcon("spaceracemod:teamselection" + i);
 		}
+	}
+	
+	public static void register() {
+		TeamSelectionBlock teamSelectionBlock = new TeamSelectionBlock(SpaceConfig.teamSelectionId, Material.ground);
+		GameRegistry.registerBlock(teamSelectionBlock, TeamSelectionItemBlock.class, "teamSelectionBlock");
+		
+		
+		LanguageRegistry.addName(new ItemStack(teamSelectionBlock, 1, 0), "Team Selection Block");
+		LanguageRegistry.addName(new ItemStack(teamSelectionBlock, 1, 1), "Team Red");
+		LanguageRegistry.addName(new ItemStack(teamSelectionBlock, 1, 2), "Team Yellow");
+		LanguageRegistry.addName(new ItemStack(teamSelectionBlock, 1, 3), "Team Green");
+		LanguageRegistry.addName(new ItemStack(teamSelectionBlock, 1, 4), "Team Blue");
+		LanguageRegistry.addName(new ItemStack(teamSelectionBlock, 1, 5), "Team Cyan");
+		LanguageRegistry.addName(new ItemStack(teamSelectionBlock, 1, 6), "Team Purple");
 	}
 
 }

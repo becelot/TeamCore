@@ -6,8 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.becelot.spacerace.dimension.SpaceEnterCommand;
-import com.becelot.spacerace.setup.SpaceraceStartCommand;
-import com.becelot.spacerace.setup.TeamLimitsCommand;
+import com.becelot.spacerace.setup.commands.ConfirmLeaderCommand;
+import com.becelot.spacerace.setup.commands.SpaceraceStartCommand;
+import com.becelot.spacerace.setup.commands.TeamLimitsCommand;
 import com.becelot.spacerace.team.TeamRegisterCommand;
 import com.becelot.spacerace.team.TeamSendCommand;
 
@@ -28,6 +29,7 @@ public class GenericCommand implements ICommand {
 		event.registerServerCommand(new GenericCommand("teamsend", "/teamsend <teamname> <message>", "teamsend,ts", TeamSendCommand.class));
 		event.registerServerCommand(new GenericCommand("teamlimits", "/teamlimits <teamcount> <minMemberCount> <maxMemberCount>", "teamlimits", TeamLimitsCommand.class));
 		event.registerServerCommand(new GenericCommand("startrace", "/startrace", "startrace", SpaceraceStartCommand.class));
+		event.registerServerCommand(new GenericCommand("confirmleader", "/confirmleader", "confirmleader,confirmleaders", ConfirmLeaderCommand.class));
 	}
 	
 	public GenericCommand(String commandName, String usage, String aliases, Class<? extends CommandHandler> clazz) {

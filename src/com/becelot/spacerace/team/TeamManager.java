@@ -85,5 +85,9 @@ public class TeamManager {
 		}
 		return null;
 	}
+	
+	public int getTeamCount() {
+		return this.teams.size();
+	}
 
 }

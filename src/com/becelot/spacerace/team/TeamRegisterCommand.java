@@ -5,7 +5,10 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.packet.Packet3Chat;
 import net.minecraft.util.ChatMessageComponent;
 
+import com.becelot.spacerace.SpaceConfig;
 import com.becelot.spacerace.command.CommandHandler;
+import com.becelot.spacerace.setup.TeamBuildPhase;
+import com.becelot.spacerace.util.Chat;
 
 public class TeamRegisterCommand extends CommandHandler {
 	private TeamManager teamManager;
@@ -16,12 +19,17 @@ public class TeamRegisterCommand extends CommandHandler {
 		teamManager = TeamManager.getInstance();
 		
 		invalidTeamNameMessage = new ChatMessageComponent();
-		invalidTeamNameMessage.addText("An error occured.");
+		invalidTeamNameMessage.addText("An error occured.\n");
 		invalidTeamNameMessage.addText("The team name is not valid!");
 	}
 
 
 	public void processCommand(ICommandSender icommandsender, String[] astring) {
+		//Make sure, that we are currently accepting new leaders
+		if (SpaceConfig.buildPhase != TeamBuildPhase.TBP_CHOOSE_LEADERS) return;
+		if (teamManager.getTeamCount() >= SpaceConfig.teamCount) return;
+		
+		
 		if (icommandsender instanceof EntityPlayerMP) {
 			EntityPlayerMP player = (EntityPlayerMP)icommandsender;
 			
@@ -40,6 +48,12 @@ public class TeamRegisterCommand extends CommandHandler {
 					}
 				}
 			}
+		}
+		
+		if (teamManager.getTeamCount() == SpaceConfig.teamCount) {
+			Chat.sendToAllPlayers("All team leaders have been chosen");
+			Chat.sendToGameMod("Please confirm the selection of teamleaders with /confirmleader or /resetleader");
+			SpaceConfig.buildPhase = TeamBuildPhase.TBP_CONFIRM_LEADERS;
 		}
 	}
 	

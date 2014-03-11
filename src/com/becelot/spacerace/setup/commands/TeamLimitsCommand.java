@@ -1,4 +1,4 @@
-package com.becelot.spacerace.setup;
+package com.becelot.spacerace.setup.commands;
 
 import net.minecraft.command.ICommandSender;
 import net.minecraft.network.packet.Packet3Chat;
@@ -9,6 +9,9 @@ import com.becelot.spacerace.SpaceConfig;
 import com.becelot.spacerace.SpaceraceState;
 import com.becelot.spacerace.command.CommandHandler;
 import com.becelot.spacerace.player.PlayerEvent;
+import com.becelot.spacerace.setup.SetupStructureBuilder;
+import com.becelot.spacerace.setup.TeamBuildPhase;
+import com.becelot.spacerace.setup.TeamLeaderInteraction;
 
 public class TeamLimitsCommand extends CommandHandler {
 
@@ -61,8 +64,7 @@ public class TeamLimitsCommand extends CommandHandler {
 
 	@Override
 	public boolean canCommandSenderUseCommand(ICommandSender icommandsender) {
-		//TODO: GameMod 
-		return true; //icommandsender.getCommandSenderName().equals(SpaceConfig.gameMod);
+		return icommandsender.getCommandSenderName().equals(SpaceConfig.gameMod);
 	}
 
 }

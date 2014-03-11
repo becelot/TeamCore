@@ -34,6 +34,8 @@ public class PlayerTracker implements IPlayerTracker {
 
 	@Override
 	public void onPlayerLogin(EntityPlayer player) {
+		//TODO: Remove this line, just for debugging.
+		SpaceConfig.gameMod = player.getDisplayName();
 		switch (SpaceConfig.raceState) {
 			case SR_IDLE:
 				break;
@@ -55,7 +57,7 @@ public class PlayerTracker implements IPlayerTracker {
 	private void playerLoginPreparing(EntityPlayer player) {
 		if (player instanceof EntityPlayerMP) {
 			EntityPlayerMP playerMP = (EntityPlayerMP)player;
-			DimensionTeleporter.transferPlayerToDimension(playerMP, SpaceConfig.dimensionId);
+			DimensionTeleporter.transferPlayerToDimension(playerMP, SpaceConfig.dimensionId, 0, 1, 0);
 			
 		}
 		

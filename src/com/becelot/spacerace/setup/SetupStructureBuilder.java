@@ -8,7 +8,8 @@ import com.becelot.spacerace.util.Vector;
 
 public class SetupStructureBuilder {
 	public static final int radius = 10;
-	public static final int cubicCage = 5;
+	public static final int cubicCageWidth = 5;
+	public static final int cubicCageHeight = 200;
 	public static final int height = 5;
 	public static final int distance = 5;
 	
@@ -49,26 +50,26 @@ public class SetupStructureBuilder {
 	}
 	
 	/*
-	 * Builds the starting point for the defferent teams.
+	 * Builds the starting point for the different teams.
 	 */
 	public static void buildWorldCage(World world) {
 		int teams = SpaceConfig.teamCount;
 		Vector[] corners = new Vector[4];
-		Vector downVector = new Vector(0, -cubicCage, 0);
+		Vector downVector = new Vector(0, -cubicCageWidth, 0);
 		
 		for (int i = 0; i < teams; i++) {
 			//Calculate cage position
 			double angle = 360f / (float)teams * i; 
-			int x = (int)Math.round((radius + cubicCage) * Math.cos(angle * conversion));
-			int y = (int)Math.round((radius + cubicCage) * Math.sin(angle * conversion));
+			int x = (int)Math.round((radius + cubicCageWidth) * Math.cos(angle * conversion));
+			int y = (int)Math.round((radius + cubicCageWidth) * Math.sin(angle * conversion));
 			
-			corners[0] = new Vector(x - (cubicCage / 2), 200, y - (cubicCage / 2));
-			corners[1] = new Vector(x + (cubicCage / 2), 200, y - (cubicCage / 2));
-			corners[2] = new Vector(x - (cubicCage / 2), 200, y + (cubicCage / 2));
-			corners[3] = new Vector(x + (cubicCage / 2), 200, y + (cubicCage / 2));
+			corners[0] = new Vector(x - (cubicCageWidth / 2), cubicCageHeight, y - (cubicCageWidth / 2));
+			corners[1] = new Vector(x + (cubicCageWidth / 2), cubicCageHeight, y - (cubicCageWidth / 2));
+			corners[2] = new Vector(x + (cubicCageWidth / 2), cubicCageHeight, y + (cubicCageWidth / 2));
+			corners[3] = new Vector(x - (cubicCageWidth / 2), cubicCageHeight, y + (cubicCageWidth / 2));
 			
 			//Generate outer walls
-			for(int k=0; i < 4; k++) {
+			for(int k=0; k < 4; k++) {
 				int j = (k+1) % 4;
 				
 				generatePlane(world, corners[k], corners[j], corners[k].clone().subtract(downVector), Block.glass.blockID);

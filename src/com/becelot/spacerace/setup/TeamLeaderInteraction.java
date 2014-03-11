@@ -79,10 +79,11 @@ public class TeamLeaderInteraction implements ITeamBlockInteractionEvent {
 				}
 			}
 			
-			//TODO: Generate cages in gaming world
+
 			//Next phase
 			SpaceConfig.buildPhase = TeamBuildPhase.TBP_CHOOSE_TEAMS;
 			SetupStructureBuilder.buildTeamSelection(MinecraftServer.getServer().worldServerForDimension(SpaceConfig.dimensionId), false);
+			SetupStructureBuilder.buildWorldCage(MinecraftServer.getServer().worldServerForDimension(0));
 			PlayerEvent.registerTeamInteractionListener(new TeamMemberInteraction());
 		}
 		

@@ -1,12 +1,15 @@
 package com.becelot.spacerace.player;
 
-import com.becelot.spacerace.SpaceConfig;
-
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
 
+import com.becelot.spacerace.SpaceConfig;
+import com.becelot.spacerace.setup.ITeamBlockInteractionEvent;
+
 public class PlayerEvent {
+	
+	private static ITeamBlockInteractionEvent listener;
 	
 	@ForgeSubscribe
 	public void playerInteract(PlayerInteractEvent event) {
@@ -14,9 +17,17 @@ public class PlayerEvent {
 			int id = event.entityPlayer.worldObj.getBlockId(event.x, event.y, event.z);
 			if (id == SpaceConfig.teamSelectionId) {
 				int meta = event.entityPlayer.worldObj.getBlockMetadata(event.x, event.y, event.z);
-				if (meta > 0)
-					event.entityPlayer.worldObj.setBlockMetadataWithNotify(event.x, event.y, event.z, 0, 1+2);
+				if (meta > 0) {
+					//event.entityPlayer.worldObj.setBlockMetadataWithNotify(event.x, event.y, event.z, 0, 1+2);
+					if (listener != null) {
+						listener.interact(event.entityPlayer, meta, event.x+0.5, event.y+0.5, event.z+0.5);
+					}
+				}
 			}
 		}
+	}
+	
+	public static void registerTeamInteractionListener(ITeamBlockInteractionEvent listener) {
+		PlayerEvent.listener = listener;
 	}
 }

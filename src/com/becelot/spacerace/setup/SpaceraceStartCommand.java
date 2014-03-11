@@ -19,7 +19,7 @@ public class SpaceraceStartCommand extends CommandHandler {
 			for(Object player : MinecraftServer.getServer().getConfigurationManager().playerEntityList) {
 				if (player instanceof EntityPlayerMP) {
 					EntityPlayerMP playerMP = (EntityPlayerMP)player;
-					DimensionTeleporter.transferPlayerToDimension(playerMP, SpaceConfig.dimensionId);
+					DimensionTeleporter.transferPlayerToDimension(playerMP, SpaceConfig.dimensionId, 0, 1, 0);
 				}
 			}
 			//transistion to new state

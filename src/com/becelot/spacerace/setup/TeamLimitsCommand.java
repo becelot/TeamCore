@@ -8,6 +8,7 @@ import net.minecraft.util.ChatMessageComponent;
 import com.becelot.spacerace.SpaceConfig;
 import com.becelot.spacerace.SpaceraceState;
 import com.becelot.spacerace.command.CommandHandler;
+import com.becelot.spacerace.player.PlayerEvent;
 
 public class TeamLimitsCommand extends CommandHandler {
 
@@ -26,6 +27,8 @@ public class TeamLimitsCommand extends CommandHandler {
 								String.format(successfullSetup, SpaceConfig.teamCount, SpaceConfig.minMemberCount, SpaceConfig.maxMemberCount)), true));
 						SetupStructureBuilder.buildMidCage(MinecraftServer.getServer().worldServerForDimension(SpaceConfig.dimensionId));
 						SetupStructureBuilder.buildTeamSelection(MinecraftServer.getServer().worldServerForDimension(SpaceConfig.dimensionId));
+						SpaceConfig.buildPhase = TeamBuildPhase.TBP_CHOOSE_LEADERS;
+						PlayerEvent.registerTeamInteractionListener(new TeamLeaderInteraction());
 						return;
 					}
 				}

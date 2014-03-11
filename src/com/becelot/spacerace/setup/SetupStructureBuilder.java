@@ -15,11 +15,11 @@ public class SetupStructureBuilder {
 	public static void buildMidCage(World world) {
 		
 		for (int i = 0; i < 360; i++) {
-			int x = (int)Math.floor((radius * Math.cos(i * conversion)));
-			int y = (int)Math.floor((radius * Math.sin(i * conversion)));
+			int x = (int)Math.round((radius * Math.cos(i * conversion)));
+			int y = (int)Math.round((radius * Math.sin(i * conversion)));
 			
 			for (int j = 0; j < height; j++) {
-				world.setBlock(x, j, y, Block.glass.blockID, 0, 1+2);
+				world.setBlock(x, j+1, y, Block.glass.blockID, 0, 1+2);
 			}
 		}
 		
@@ -30,10 +30,19 @@ public class SetupStructureBuilder {
 		for (int i = 0; i < 6; i++) {
 			double angle = i * (360f / (SpaceConfig.maxTeams - 1f));
 			
-			int x = (int)Math.floor(((radius + distance) * Math.cos(angle * conversion)));
-			int y = (int)Math.floor(((radius + distance) * Math.sin(angle * conversion)));
+			//Calculate midpoints
+			int x = (int)Math.round(((radius + distance) * Math.cos(angle * conversion)));
+			int y = (int)Math.round(((radius + distance) * Math.sin(angle * conversion)));
 			
 			world.setBlock(x, 1, y, SpaceConfig.teamSelectionId, i+1, 1+2);
+			
+			//Generate Cage
+			for (int j = 0; j < height; j++) {
+				world.setBlock(x-1, j+2, y, Block.glass.blockID, 0, 1+2+4);
+				world.setBlock(x+1, j+2, y, Block.glass.blockID, 0, 1+2+4);
+				world.setBlock(x, j+2, y+1, Block.glass.blockID, 0, 1+2+4);
+				world.setBlock(x, j+2, y-1, Block.glass.blockID, 0, 1+2+4);
+			}
 		}
 	}
 }

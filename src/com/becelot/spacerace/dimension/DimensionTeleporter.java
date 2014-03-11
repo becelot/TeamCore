@@ -10,7 +10,7 @@ import net.minecraft.world.WorldServer;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class DimensionTeleporter {
-	public static void transferPlayerToDimension(EntityPlayerMP player, int dimension) {
+	public static void transferPlayerToDimension(EntityPlayerMP player, int dimension, double x, double y, double z) {
 		//Get old and new values
 		int oldDim = player.dimension;
 		WorldServer oldServer = player.mcServer.worldServerForDimension(oldDim);
@@ -27,11 +27,10 @@ public class DimensionTeleporter {
 		
 		
 		//Prepare spawn
-		ChunkCoordinates chunkcoordinates = newServer.getSpawnPoint();
 		newServer.getPlayerManager().addPlayer(player);
-		newServer.theChunkProviderServer.loadChunk((int)player.posX >> 4, (int)player.posZ >> 4);
+		newServer.theChunkProviderServer.loadChunk((int)x >> 4, (int)z >> 4);
 		newServer.spawnEntityInWorld(player);
-		player.setLocationAndAngles(chunkcoordinates.posX, player.posY, chunkcoordinates.posZ, player.rotationYaw, player.rotationPitch);
+		player.setLocationAndAngles(x, y, z, player.rotationYaw, player.rotationPitch);
 		newServer.updateEntityWithOptionalForce(player, false);
 		
 		//Setup new world location
@@ -45,6 +44,14 @@ public class DimensionTeleporter {
 		
 		
 		GameRegistry.onPlayerChangedDimension(player);
+	}
+	
+	public static void transferPlayerToDimension(EntityPlayerMP player, int dimension) {
+
+		WorldServer newServer = player.mcServer.worldServerForDimension(dimension);
+		ChunkCoordinates chunkcoordinates = newServer.getSpawnPoint();
+		
+		transferPlayerToDimension(player, dimension, chunkcoordinates.posX, chunkcoordinates.posY, chunkcoordinates.posZ);
 	}
 	
     public static void syncPlayerInventory(EntityPlayerMP par1EntityPlayerMP)

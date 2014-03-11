@@ -31,11 +31,13 @@ public class SpaceRaceMod {
 	@Instance(value= "spaceracemod")
 	public static SpaceRaceMod instance;
 	public static Block teamSelectionBlock;
+
 	
 	@EventHandler
 	public void preLoad(FMLPreInitializationEvent event) {
 		DimensionManager.registerProviderType(SpaceConfig.dimensionId, SpaceProvider.class, false);
 		DimensionManager.registerDimension(SpaceConfig.dimensionId, SpaceConfig.dimensionId);
+		
 		
 		teamSelectionBlock = new TeamSelectionBlock(SpaceConfig.teamSelectionId, Material.ground);
 		GameRegistry.registerBlock(teamSelectionBlock, TeamSelectionItemBlock.class, "teamSelectionBlock");

@@ -1,16 +1,58 @@
 package com.becelot.spacerace.setup;
 
-import com.becelot.spacerace.SpaceConfig;
-
 import net.minecraft.block.Block;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+
+import com.becelot.spacerace.SpaceConfig;
+import com.becelot.spacerace.util.Vector;
 
 public class SetupStructureBuilder {
 	public static final int radius = 10;
+	public static final int cubicCage = 5;
 	public static final int height = 5;
 	public static final int distance = 5;
 	
 	private static final double conversion = Math.PI / 180f;
+	
+	private static void connectCorner(World world, Vector corner1, Vector corner2, int blockId) {
+		Vector dir = corner1.clone().subtract(corner2).multiply(-1).normalize();
+		int dist = (int)corner1.distance(corner2);
+		
+		Vector c1 = corner1.clone();
+		
+		for (int i=0; i <= dist; i++) {
+			world.setBlock(c1.getBlockX(), c1.getBlockY(), c1.getBlockZ(), blockId, 0, 3);
+			c1.add(dir);
+		}
+	}
+	
+	private static void generatePlane(World world, Vector corner1, Vector corner2, Vector corner3, int blockId) {
+		int iterations = (int)corner1.distance(corner3);
+		
+		Vector c1 = corner1.clone(), c2 = corner2.clone();
+		Vector dir = corner1.clone().subtract(corner3).multiply(-1).normalize();
+		
+		
+		for (int i = 0; i <= iterations; i++) {
+			connectCorner(world, c1, c2, blockId);
+			c1.add(dir);
+			c2.add(dir);
+		}
+	}
+	
+	public static void buildWorldCage(World world) {
+		int teams = SpaceConfig.teamCount;
+		
+		
+		for (int i = 0; i < teams; i++) {
+			double angle = 360f / (float)teams * i; 
+			int x = (int)Math.round((radius + cubicCage) * Math.cos(angle * conversion));
+			int y = (int)Math.round((radius + cubicCage) * Math.sin(angle * conversion));
+			
+			
+		}
+	}
 	
 	public static void buildMidCage(World world) {
 		

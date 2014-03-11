@@ -2,6 +2,7 @@ package com.becelot.spacerace.player;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.world.EnumGameType;
 
 import com.becelot.spacerace.SpaceConfig;
 import com.becelot.spacerace.dimension.DimensionTeleporter;
@@ -38,8 +39,10 @@ public class PlayerTracker implements IPlayerTracker {
 		SpaceConfig.gameMod = player.getDisplayName();
 		switch (SpaceConfig.raceState) {
 			case SR_IDLE:
+				player.setGameType(EnumGameType.ADVENTURE);
 				break;
 			case SR_PREPARING:
+				player.setGameType(EnumGameType.ADVENTURE);
 				playerLoginPreparing(player);
 				break;
 			case SR_STARTED:

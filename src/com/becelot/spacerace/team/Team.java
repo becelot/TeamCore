@@ -18,6 +18,7 @@ public class Team {
 	public Team(String teamName) {
 		this.member = new HashMap<String, EntityPlayerMP>();
 		this.teamName = teamName;
+		this.teamColor = TeamColor.TC_GRAY;
 	}
 	
 	public EntityPlayerMP getTeamLeader() {

@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.becelot.spacerace.dimension.SpaceEnterCommand;
 import com.becelot.spacerace.setup.commands.ConfirmLeaderCommand;
+import com.becelot.spacerace.setup.commands.ResetLeaderCommand;
 import com.becelot.spacerace.setup.commands.SpaceraceStartCommand;
 import com.becelot.spacerace.setup.commands.TeamLimitsCommand;
 import com.becelot.spacerace.team.TeamRegisterCommand;
@@ -23,6 +24,9 @@ public class GenericCommand implements ICommand {
 	private String usage;
 	private CommandHandler commandHandler;
 	
+	/*
+	 * All Command should be registered here
+	 */
 	public static void registerCommands(FMLServerStartingEvent event) {
 		event.registerServerCommand(new GenericCommand("enter", "/enter", "enter,ent", SpaceEnterCommand.class));
 		event.registerServerCommand(new GenericCommand("registerteam", "/registerteam <teamname>", "registerteam,rt", TeamRegisterCommand.class));
@@ -30,8 +34,12 @@ public class GenericCommand implements ICommand {
 		event.registerServerCommand(new GenericCommand("teamlimits", "/teamlimits <teamcount> <minMemberCount> <maxMemberCount>", "teamlimits", TeamLimitsCommand.class));
 		event.registerServerCommand(new GenericCommand("startrace", "/startrace", "startrace", SpaceraceStartCommand.class));
 		event.registerServerCommand(new GenericCommand("confirmleader", "/confirmleader", "confirmleader,confirmleaders", ConfirmLeaderCommand.class));
+		event.registerServerCommand(new GenericCommand("resetleader", "/resetleader", "resetleader,resetleaders", ResetLeaderCommand.class));
 	}
 	
+	/*
+	 * Constructs a new command
+	 */
 	public GenericCommand(String commandName, String usage, String aliases, Class<? extends CommandHandler> clazz) {
 		this.commandName = commandName;
 		this.usage = usage;
@@ -39,6 +47,7 @@ public class GenericCommand implements ICommand {
 		for (String a : aliases.split(",")) {
 			this.aliases.add(a);
 		}
+		
 		
 		Constructor<?>[] ctors = clazz.getDeclaredConstructors();
 		Constructor<?> ctor = null;

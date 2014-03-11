@@ -89,5 +89,9 @@ public class TeamManager {
 	public int getTeamCount() {
 		return this.teams.size();
 	}
+	
+	public void resetTeams() {
+		teams.clear();
+	}
 
 }

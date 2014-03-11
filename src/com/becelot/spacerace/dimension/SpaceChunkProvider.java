@@ -37,6 +37,7 @@ public class SpaceChunkProvider implements IChunkProvider {
 		
         Chunk chunk = new Chunk(this.worldObj, i, j);
 
+        //Generate an layerd chunk
         for (int k = 0; k < 1; ++k)
         {
             int l = k >> 4;

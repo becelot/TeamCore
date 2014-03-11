@@ -7,6 +7,11 @@ import net.minecraft.util.ChatMessageComponent;
 import com.becelot.spacerace.SpaceConfig;
 import com.becelot.spacerace.command.CommandHandler;
 
+
+//TODO: Remove later
+/*
+ * Just for debugging. Should be removed later
+ */
 public class SpaceEnterCommand extends CommandHandler {
 
 

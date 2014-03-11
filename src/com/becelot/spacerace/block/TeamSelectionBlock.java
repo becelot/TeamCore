@@ -52,6 +52,9 @@ public class TeamSelectionBlock extends Block {
 		}
 	}
 	
+	/*
+	 * Registers all blocks of this type
+	 */
 	public static void register() {
 		TeamSelectionBlock teamSelectionBlock = new TeamSelectionBlock(SpaceConfig.teamSelectionId, Material.ground);
 		GameRegistry.registerBlock(teamSelectionBlock, TeamSelectionItemBlock.class, "teamSelectionBlock");

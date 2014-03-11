@@ -34,7 +34,7 @@ public class SetupStructureBuilder {
 		world.setBlock(0, 0, 0, Block.glass.blockID);
 	}
 	
-	public static void buildTeamSelection(World world) {
+	public static void buildTeamSelection(World world, boolean cages) {
 		for (int i = 0; i < 6; i++) {
 			double angle = i * (360f / (SpaceConfig.maxTeams - 1f));
 			
@@ -44,13 +44,20 @@ public class SetupStructureBuilder {
 			
 			world.setBlock(x, 1, y, SpaceConfig.teamSelectionId, i+1, 1+2);
 			
+			
 			//Generate Cage
-			for (int j = 0; j < height; j++) {
-				world.setBlock(x-1, j+2, y, Block.glass.blockID, 0, 1+2+4);
-				world.setBlock(x+1, j+2, y, Block.glass.blockID, 0, 1+2+4);
-				world.setBlock(x, j+2, y+1, Block.glass.blockID, 0, 1+2+4);
-				world.setBlock(x, j+2, y-1, Block.glass.blockID, 0, 1+2+4);
+			if (cages) {
+				for (int j = 0; j < height; j++) {
+					world.setBlock(x-1, j+2, y, Block.glass.blockID, 0, 1+2+4);
+					world.setBlock(x+1, j+2, y, Block.glass.blockID, 0, 1+2+4);
+					world.setBlock(x, j+2, y+1, Block.glass.blockID, 0, 1+2+4);
+					world.setBlock(x, j+2, y-1, Block.glass.blockID, 0, 1+2+4);
+				}
 			}
 		}
+	}
+	
+	public static void buildTeamSelection(World world) {
+		SetupStructureBuilder.buildTeamSelection(world, true);
 	}
 }

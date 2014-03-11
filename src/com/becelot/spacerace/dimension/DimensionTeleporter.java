@@ -10,6 +10,9 @@ import net.minecraft.world.WorldServer;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class DimensionTeleporter {
+	/*
+	 * Transfers a player to an other dimension to given coordiantes
+	 */
 	public static void transferPlayerToDimension(EntityPlayerMP player, int dimension, double x, double y, double z) {
 		//Get old and new values
 		int oldDim = player.dimension;
@@ -46,6 +49,9 @@ public class DimensionTeleporter {
 		GameRegistry.onPlayerChangedDimension(player);
 	}
 	
+	/*
+	 * Transfers player to given dimension. Teleports him to the set spawn location.
+	 */
 	public static void transferPlayerToDimension(EntityPlayerMP player, int dimension) {
 
 		WorldServer newServer = player.mcServer.worldServerForDimension(dimension);
@@ -54,6 +60,9 @@ public class DimensionTeleporter {
 		transferPlayerToDimension(player, dimension, chunkcoordinates.posX, chunkcoordinates.posY, chunkcoordinates.posZ);
 	}
 	
+	/*
+	 * Resyncronize the players inventory.
+	 */
     public static void syncPlayerInventory(EntityPlayerMP par1EntityPlayerMP)
     {
         par1EntityPlayerMP.sendContainerToPlayer(par1EntityPlayerMP.inventoryContainer);
@@ -61,6 +70,9 @@ public class DimensionTeleporter {
         par1EntityPlayerMP.playerNetServerHandler.sendPacketToPlayer(new Packet16BlockItemSwitch(par1EntityPlayerMP.inventory.currentItem));
     }
 	
+    /*
+     * Update the weather on client side.
+     */
     public static void updateTimeAndWeatherForPlayer(EntityPlayerMP par1EntityPlayerMP, WorldServer par2WorldServer)
     {
         par1EntityPlayerMP.playerNetServerHandler.sendPacketToPlayer(new Packet4UpdateTime(par2WorldServer.getTotalWorldTime(), par2WorldServer.getWorldTime(), par2WorldServer.getGameRules().getGameRuleBooleanValue("doDaylightCycle")));

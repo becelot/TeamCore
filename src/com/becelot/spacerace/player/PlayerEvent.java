@@ -20,7 +20,7 @@ public class PlayerEvent {
 
 				//event.entityPlayer.worldObj.setBlockMetadataWithNotify(event.x, event.y, event.z, 0, 1+2);
 				if (listener != null) {
-					listener.interact(event.entityPlayer, meta, event.x+0.5, event.y+0.5, event.z+0.5);
+					listener.interact(event.entityPlayer, meta, event.x, event.y, event.z);
 				}
 			}
 		}

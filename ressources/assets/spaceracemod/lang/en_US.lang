@@ -33,6 +33,8 @@ command.startrace.aliases=racestart,sr,rs
 #ConfirmLeader
 command.confirmleader.usage=/confirmleader
 command.confirmleader.aliases=confirmleaders
+command.confirmleader.confirmed=Team leaders have been approved.
+command.confirmleader.instructions=Please choose a color for your team.
 
 #ResetLeaders
 command.resetleader.usage=/resetleader

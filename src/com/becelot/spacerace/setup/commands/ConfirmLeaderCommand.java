@@ -2,7 +2,6 @@ package com.becelot.spacerace.setup.commands;
 
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.util.ChatMessageComponent;
 
 import com.becelot.spacerace.SpaceConfig;
 import com.becelot.spacerace.command.CommandHandler;
@@ -15,14 +14,14 @@ public class ConfirmLeaderCommand extends CommandHandler{
 
 	@Override
 	public void processCommand(ICommandSender icommandsender, String[] astring) {
-		Chat.sendToAllPlayers("Team leaders have been aproved.");
+		Chat.sendToAllPlayersFromRegistry("command.confirmleader.confirmed");
 		TeamManager manager = TeamManager.getInstance();
 		
 		//Teleport all leaders up
 		for(Team team : manager.getTeams()) {
 			EntityPlayerMP player = team.getTeamLeader();
 			player.setPositionAndUpdate(player.posX, player.posY+SetupStructureBuilder.height, player.posZ);
-			Chat.sendToPlayer(player, "command.resetleader.reseted");
+			Chat.sendToPlayer(player, "command.confirmleader.instructions");
 		}
 		
 		

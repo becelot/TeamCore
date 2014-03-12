@@ -2,10 +2,8 @@ package com.becelot.spacerace.setup.commands;
 
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.network.packet.Packet3Chat;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatMessageComponent;
-import net.minecraft.util.StatCollector;
 
 import com.becelot.spacerace.SpaceConfig;
 import com.becelot.spacerace.SpaceraceState;

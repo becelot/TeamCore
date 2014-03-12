@@ -30,6 +30,8 @@ public class SpaceRaceMod {
 	
 	@EventHandler
 	public void preLoad(FMLPreInitializationEvent event) {
+		SpaceConfig.loadConfig(event);
+		
 		DimensionManager.registerProviderType(SpaceConfig.dimensionId, SpaceProvider.class, false);
 		DimensionManager.registerDimension(SpaceConfig.dimensionId, SpaceConfig.dimensionId);
 		

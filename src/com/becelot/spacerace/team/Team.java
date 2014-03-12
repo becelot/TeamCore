@@ -11,14 +11,16 @@ public class Team {
 	EntityPlayerMP leader;
 	private String teamName;
 	private TeamColor teamColor;
+	private int teamId;
 	
 	/*
 	 * Create new team
 	 */
-	public Team(String teamName) {
+	public Team(String teamName, int id) {
 		this.member = new HashMap<String, EntityPlayerMP>();
 		this.teamName = teamName;
 		this.teamColor = TeamColor.TC_GRAY;
+		this.teamId = id;
 	}
 	
 	public EntityPlayerMP getTeamLeader() {
@@ -80,5 +82,12 @@ public class Team {
 	 */
 	public TeamColor getTeamColor() {
 		return this.teamColor;
+	}
+	
+	/*
+	 * Returns the team id
+	 */
+	public int getId() {
+		return this.teamId;
 	}
 }

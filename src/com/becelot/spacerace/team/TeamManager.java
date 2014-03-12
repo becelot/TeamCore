@@ -35,7 +35,7 @@ public class TeamManager {
 		if (this.teamExists(name)) 
 				return null;
 		
-		Team team = new Team(name);
+		Team team = new Team(name, teams.size());
 		teams.add(team);
 		return team;
 	}
@@ -86,10 +86,30 @@ public class TeamManager {
 		return null;
 	}
 	
+	/*
+	 * Returns the team, that choose the given color. If no such team exists, returns null.
+	 */
+	public Team getTeamByColor(TeamColor color) {
+		if (color == TeamColor.TC_GRAY) return null;
+		for (Team team : teams) {
+			if (team.getTeamColor() == color) {
+				return team;
+			}
+		}
+		
+		return null;
+	}
+	
+	/*
+	 * Returns the current team count
+	 */
 	public int getTeamCount() {
 		return this.teams.size();
 	}
 	
+	/*
+	 * Reset all team settings
+	 */
 	public void resetTeams() {
 		teams.clear();
 	}

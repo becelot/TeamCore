@@ -76,8 +76,8 @@ public class SetupStructureBuilder {
 			}
 			
 			//Generate floor and ceiling
-			generatePlane(world, corners[0], corners[1], corners[2], Block.glass.blockID);
-			generatePlane(world, corners[0].subtract(downVector), corners[1].subtract(downVector), corners[2].subtract(downVector), Block.glass.blockID);
+			generatePlane(world, corners[0], corners[1], corners[3], Block.glass.blockID);
+			generatePlane(world, corners[0].subtract(downVector), corners[1].subtract(downVector), corners[3].subtract(downVector), Block.glass.blockID);
 		}
 	}
 	

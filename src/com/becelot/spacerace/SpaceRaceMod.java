@@ -4,6 +4,7 @@ import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 
 import com.becelot.spacerace.block.TeamSelectionBlock;
+import com.becelot.spacerace.block.UnbreakableGlass;
 import com.becelot.spacerace.command.GenericCommand;
 import com.becelot.spacerace.dimension.SpaceProvider;
 import com.becelot.spacerace.player.PlayerEvent;
@@ -33,6 +34,7 @@ public class SpaceRaceMod {
 		DimensionManager.registerDimension(SpaceConfig.dimensionId, SpaceConfig.dimensionId);
 		
 		TeamSelectionBlock.register();
+		UnbreakableGlass.register();
 
 		GameRegistry.registerPlayerTracker(new PlayerTracker());
 		

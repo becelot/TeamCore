@@ -83,7 +83,7 @@ public class TeamLeaderInteraction implements ITeamBlockInteractionEvent {
 			//Next phase
 			SpaceConfig.buildPhase = TeamBuildPhase.TBP_CHOOSE_TEAMS;
 			SetupStructureBuilder.buildTeamSelection(MinecraftServer.getServer().worldServerForDimension(SpaceConfig.dimensionId), false);
-			SetupStructureBuilder.buildWorldCage(MinecraftServer.getServer().worldServerForDimension(0));
+			SetupStructureBuilder.buildWorldCage(MinecraftServer.getServer().worldServerForDimension(0), SpaceConfig.unbreakableGlassId);
 			PlayerEvent.registerTeamInteractionListener(new TeamMemberInteraction());
 		}
 		

@@ -4,6 +4,7 @@ import com.becelot.spacerace.setup.TeamBuildPhase;
 
 public final class SpaceConfig {
 	public static int teamSelectionId = 500;
+	public static int unbreakableGlassId = 501;
 	public static String gameMod = "onlinefreak";
 	
 	public static final int dimensionId = 5;

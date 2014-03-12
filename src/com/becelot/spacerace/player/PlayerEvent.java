@@ -17,8 +17,6 @@ public class PlayerEvent {
 			int id = event.entityPlayer.worldObj.getBlockId(event.x, event.y, event.z);
 			if (id == SpaceConfig.teamSelectionId) {
 				int meta = event.entityPlayer.worldObj.getBlockMetadata(event.x, event.y, event.z);
-
-				//event.entityPlayer.worldObj.setBlockMetadataWithNotify(event.x, event.y, event.z, 0, 1+2);
 				if (listener != null) {
 					listener.interact(event.entityPlayer, meta, event.x, event.y, event.z);
 				}

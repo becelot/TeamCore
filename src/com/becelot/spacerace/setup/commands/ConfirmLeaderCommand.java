@@ -6,10 +6,10 @@ import net.minecraft.util.ChatMessageComponent;
 
 import com.becelot.spacerace.SpaceConfig;
 import com.becelot.spacerace.command.CommandHandler;
-import com.becelot.spacerace.setup.SetupStructureBuilder;
 import com.becelot.spacerace.team.Team;
 import com.becelot.spacerace.team.TeamManager;
 import com.becelot.spacerace.util.Chat;
+import com.becelot.spacerace.util.SetupStructureBuilder;
 
 public class ConfirmLeaderCommand extends CommandHandler{
 

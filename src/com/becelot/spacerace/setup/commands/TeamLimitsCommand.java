@@ -9,9 +9,9 @@ import com.becelot.spacerace.SpaceConfig;
 import com.becelot.spacerace.SpaceraceState;
 import com.becelot.spacerace.command.CommandHandler;
 import com.becelot.spacerace.player.PlayerEvent;
-import com.becelot.spacerace.setup.SetupStructureBuilder;
 import com.becelot.spacerace.setup.TeamBuildPhase;
 import com.becelot.spacerace.setup.TeamLeaderInteraction;
+import com.becelot.spacerace.util.SetupStructureBuilder;
 
 public class TeamLimitsCommand extends CommandHandler {
 

@@ -9,6 +9,7 @@ import com.becelot.spacerace.dimension.DimensionTeleporter;
 import com.becelot.spacerace.team.Team;
 import com.becelot.spacerace.team.TeamColor;
 import com.becelot.spacerace.team.TeamManager;
+import com.becelot.spacerace.util.SetupStructureBuilder;
 
 /*
  * Is called, when a team member clicks a colored block.

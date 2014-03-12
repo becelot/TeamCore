@@ -10,6 +10,7 @@ import com.becelot.spacerace.team.Team;
 import com.becelot.spacerace.team.TeamColor;
 import com.becelot.spacerace.team.TeamManager;
 import com.becelot.spacerace.util.Chat;
+import com.becelot.spacerace.util.SetupStructureBuilder;
 
 /*
  * Is called, when a team leader clicks a colored selection block

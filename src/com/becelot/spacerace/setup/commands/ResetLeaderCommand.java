@@ -6,8 +6,8 @@ import net.minecraft.server.MinecraftServer;
 
 import com.becelot.spacerace.SpaceConfig;
 import com.becelot.spacerace.command.CommandHandler;
-import com.becelot.spacerace.setup.SetupStructureBuilder;
 import com.becelot.spacerace.util.Chat;
+import com.becelot.spacerace.util.SetupStructureBuilder;
 
 public class ResetLeaderCommand extends CommandHandler {
 

@@ -1,10 +1,9 @@
-package com.becelot.spacerace.setup;
+package com.becelot.spacerace.util;
 
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 
 import com.becelot.spacerace.SpaceConfig;
-import com.becelot.spacerace.util.Vector;
 
 public class SetupStructureBuilder {
 	public static final int radius = 10;

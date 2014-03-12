@@ -25,7 +25,8 @@ command.teamsend.aliases=ts
 command.teamsend.invalidusage=Invalid arguments.\n Usage: /teamsend <teamname> <message>
 command.teamsend.nosuchteam=Team does not exist.
 command.teamsend.nomember=You cannot send a message to a team, because you are not a team member yourself.
-command.teamsend.format=%s [%sÂ§r]: %s
+command.teamsend.format=%s [%s§r]: %s
+
 #StartRace
 command.startrace.usage=/startrace
 command.startrace.aliases=racestart,sr,rs
@@ -41,7 +42,19 @@ command.resetleader.usage=/resetleader
 command.resetleader.aliases=resetleaders
 command.resetleader.reseted=Leaders have been reseted. Please register your team again.
 
+#ConfirmMember
+command.confirmmember.usage=/confirmmember
+command.confirmmember.aliases=confirmmembers
+command.confirmmember.confirmed=All members have been approved. The race will start shortly.
+command.confirmmember.confirmed.gamemod=The team building has finished! Start the game with /startrace.
+
+#ResetMember
+command.resetmember.usage=/resetmember
+command.resetmember.aliases=resetmembers
+
 #Events
+event.team.choose.all=All players have chosen their teams!
+event.team.choose.gamemod=Pleader confirm player distribution with /confirmmember or /resetmember!
 event.team.full=This team is already full.
 event.team.invalid=This team is not registered!
 event.team.joined.member=%s joined team %s

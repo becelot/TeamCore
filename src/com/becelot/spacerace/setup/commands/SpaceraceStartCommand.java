@@ -26,6 +26,8 @@ public class SpaceraceStartCommand extends CommandHandler {
 			//transistion to new state
 			SpaceConfig.raceState = SpaceraceState.SR_PREPARING;
 			SpaceConfig.buildPhase = TeamBuildPhase.TBP_SETUP;
+		} else if (SpaceConfig.buildPhase == TeamBuildPhase.TBP_DONE) {
+			//TODO: Countdown
 		}
 	}
 

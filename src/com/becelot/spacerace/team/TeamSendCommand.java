@@ -3,22 +3,16 @@ package com.becelot.spacerace.team;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ChatMessageComponent;
+import net.minecraft.util.StatCollector;
 
 import com.becelot.spacerace.command.CommandHandler;
+import com.becelot.spacerace.util.Chat;
 
 public class TeamSendCommand extends CommandHandler {
 	
-	ChatMessageComponent invalidUsageMessage;
-	ChatMessageComponent invalidTeamNameMessage;
-	
-	public TeamSendCommand() {
-		
-		invalidUsageMessage = new ChatMessageComponent();
-		invalidUsageMessage.addText("Invalid argument");
-		
-		invalidTeamNameMessage = new ChatMessageComponent();
-		invalidTeamNameMessage.addText("Team not found");
-	}
+	ChatMessageComponent invalidUsageMessage = Chat.fromRegistry("command.teamsend.invalidusage");
+	ChatMessageComponent invalidTeamNameMessage = Chat.fromRegistry("command.teamsend.nosuchteam");
+	ChatMessageComponent noMemberMessage = Chat.fromRegistry("command.teamsend.nomember");
 
 
 	public void processCommand(ICommandSender icommandsender, String[] astring) {
@@ -32,14 +26,20 @@ public class TeamSendCommand extends CommandHandler {
 				}
 				Team from = TeamManager.getInstance().getTeamByPlayerName(player);
 				if (from == null) {
-					player.sendChatToPlayer(ChatMessageComponent.createFromText("You suck"));
+					player.sendChatToPlayer(noMemberMessage);
 					return;
 				}
 				String message = "";
 				for (int i = 1; i < astring.length; i++) {
 					message += astring[i] + " ";
 				}
-				target.sendMessageToTeam(player.getDisplayName() + " [" + from.getTeamName() +"]"+ ": " + message);
+				target.sendMessageToTeam(
+						StatCollector.translateToLocalFormatted("command.teamsend.format", 
+								player.getDisplayName(), 
+								from.getTeamColor().getPrefix()+from.getTeamName(), 
+								message
+							)
+						);
 				
 			} else {
 				icommandsender.sendChatToPlayer(invalidUsageMessage);

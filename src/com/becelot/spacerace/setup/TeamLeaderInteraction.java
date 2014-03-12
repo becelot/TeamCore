@@ -18,6 +18,7 @@ import com.becelot.spacerace.util.SetupStructureBuilder;
 public class TeamLeaderInteraction implements ITeamBlockInteractionEvent {
 	
 	public static String successMessage = "%sTeam %s has selected a team color!";
+	private ChatMessageComponent colorAlreadyChosen = Chat.fromRegistry("event.team.leader.colorchosen.chosen");
 	
 	/*
 	 * Checks, if this phase is complete
@@ -36,7 +37,7 @@ public class TeamLeaderInteraction implements ITeamBlockInteractionEvent {
 	public void interact(EntityPlayer entityPlayer, int team, int x, int y,
 			int z) {
 		if (team == 0 || team >= SpaceConfig.maxTeams) {
-			entityPlayer.sendChatToPlayer(ChatMessageComponent.createFromText("This color has already been choosen!"));
+			entityPlayer.sendChatToPlayer(colorAlreadyChosen);
 			return;
 		}
 		
@@ -59,11 +60,11 @@ public class TeamLeaderInteraction implements ITeamBlockInteractionEvent {
 		//Setup team
 		Team tea = manager.getTeamByPlayerName(entityPlayer.getDisplayName());
 		tea.setTeamColor(selectedColor);
-		Chat.sendToAllPlayers(String.format(successMessage, selectedColor.getPrefix(), tea.getTeamName()));
+		Chat.sendToAllPlayersFromRegistryFormatted("event.team.leader.colorchosen", selectedColor.getPrefix(), tea.getTeamName());
 		
 		//If all leaders have chosen their color
 		if (this.checkComplete()) {
-			Chat.sendToAllPlayers("All teams have choosen their color. Please select your team now.\nTo select your time, right-click the team color block.");
+			Chat.sendToAllPlayersFromRegistry("event.team.leader.colorchosen.all");
 			//Teleport all players up to select their team.
 			for (Object o : MinecraftServer.getServer().getConfigurationManager().playerEntityList) {	
 				EntityPlayer player = (EntityPlayer)o;

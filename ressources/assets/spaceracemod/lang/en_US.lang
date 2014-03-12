@@ -1,0 +1,48 @@
+#####
+# Commands
+#####
+#Enter
+command.enter.usage=/enter
+command.enter.aliases=ent
+
+#Teamlimit
+command.teamlimit.invalidargument=At least one argument was not a valid number.
+command.teamlimit.invalidargumentcount=Please provide all parameters: <teamcount> <minMembers> <maxMembers>
+command.teamlimit.successfull.server=[SERVER]: Team setup successfull. %d teams are competing, member count ranging from %d to %d!
+command.teamlimit.successfull=Team setup successfull. %d teams are competing, member count ranging from %d to %d!
+command.teamlimit.usage=/teamlimits <teamcount> <minMemberCount> <maxMemberCount>
+command.teamlimit.aliases=tl
+
+#RegisterTeam
+command.registerteam.usage=/registerteam <teamname>
+command.registerteam.aliases=rt
+command.registerteam.sucessfull.all=All team leaders have been chosen.
+command.registerteam.sucessfull.gamemod=Please confirm the selection of teamleaders with /confirmleader or /resetleader
+
+#TeamSend
+command.teamsend.usage=/teamsend <teamname> <message>
+command.teamsend.aliases=ts
+command.teamsend.invalidusage=Invalid arguments.\n Usage: /teamsend <teamname> <message>
+command.teamsend.nosuchteam=Team does not exist.
+command.teamsend.nomember=You cannot send a message to a team, because you are not a team member yourself.
+command.teamsend.format=%s [%s§r]: %s
+#StartRace
+command.startrace.usage=/startrace
+command.startrace.aliases=racestart,sr,rs
+
+#ConfirmLeader
+command.confirmleader.usage=/confirmleader
+command.confirmleader.aliases=confirmleaders
+
+#ResetLeaders
+command.resetleader.usage=/resetleader
+command.resetleader.aliases=resetleaders
+command.resetleader.reseted=Leaders have been reseted. Please register your team again.
+
+#Events
+event.team.full=This team is already full.
+event.team.invalid=This team is not registered!
+event.team.joined.member=%s joined team %s
+event.team.leader.colorchosen=%sTeam %s has selected a team color!
+event.team.leader.colorchosen.chosen=This color has already been choosen!
+event.team.leader.colorchosen.all=All teams have choosen their color. Please select your team now.\nTo select your time, right-click the team color block.

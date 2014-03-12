@@ -15,6 +15,7 @@ import com.becelot.spacerace.team.TeamSendCommand;
 
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.util.StatCollector;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
 public class GenericCommand implements ICommand {
@@ -28,23 +29,24 @@ public class GenericCommand implements ICommand {
 	 * All Command should be registered here
 	 */
 	public static void registerCommands(FMLServerStartingEvent event) {
-		event.registerServerCommand(new GenericCommand("enter", "/enter", "enter,ent", SpaceEnterCommand.class));
-		event.registerServerCommand(new GenericCommand("registerteam", "/registerteam <teamname>", "registerteam,rt", TeamRegisterCommand.class));
-		event.registerServerCommand(new GenericCommand("teamsend", "/teamsend <teamname> <message>", "teamsend,ts", TeamSendCommand.class));
-		event.registerServerCommand(new GenericCommand("teamlimits", "/teamlimits <teamcount> <minMemberCount> <maxMemberCount>", "teamlimits", TeamLimitsCommand.class));
-		event.registerServerCommand(new GenericCommand("startrace", "/startrace", "startrace", SpaceraceStartCommand.class));
-		event.registerServerCommand(new GenericCommand("confirmleader", "/confirmleader", "confirmleader,confirmleaders", ConfirmLeaderCommand.class));
-		event.registerServerCommand(new GenericCommand("resetleader", "/resetleader", "resetleader,resetleaders", ResetLeaderCommand.class));
+		event.registerServerCommand(new GenericCommand("enter", SpaceEnterCommand.class));
+		event.registerServerCommand(new GenericCommand("registerteam", TeamRegisterCommand.class));
+		event.registerServerCommand(new GenericCommand("teamsend", TeamSendCommand.class));
+		event.registerServerCommand(new GenericCommand("teamlimits", TeamLimitsCommand.class));
+		event.registerServerCommand(new GenericCommand("startrace", SpaceraceStartCommand.class));
+		event.registerServerCommand(new GenericCommand("confirmleader", ConfirmLeaderCommand.class));
+		event.registerServerCommand(new GenericCommand("resetleader", ResetLeaderCommand.class));
 	}
 	
 	/*
 	 * Constructs a new command
 	 */
-	public GenericCommand(String commandName, String usage, String aliases, Class<? extends CommandHandler> clazz) {
+	public GenericCommand(String commandName, Class<? extends CommandHandler> clazz) {
 		this.commandName = commandName;
-		this.usage = usage;
+		this.usage = StatCollector.translateToLocal("command." + commandName + ".usage");
 		this.aliases = new ArrayList<String>();
-		for (String a : aliases.split(",")) {
+		this.aliases.add(commandName);
+		for (String a : StatCollector.translateToLocal("command." + commandName + ".aliases").split(",")) {
 			this.aliases.add(a);
 		}
 		

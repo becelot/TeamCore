@@ -90,4 +90,8 @@ public class Team {
 	public int getId() {
 		return this.teamId;
 	}
+	
+	public int getTeamSize() {
+		return this.member.size();
+	}
 }

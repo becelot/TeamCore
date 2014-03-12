@@ -4,6 +4,7 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.packet.Packet3Chat;
 import net.minecraft.util.ChatMessageComponent;
+import net.minecraft.util.StatCollector;
 
 import com.becelot.spacerace.SpaceConfig;
 import com.becelot.spacerace.command.CommandHandler;
@@ -51,8 +52,8 @@ public class TeamRegisterCommand extends CommandHandler {
 		}
 		
 		if (teamManager.getTeamCount() == SpaceConfig.teamCount) {
-			Chat.sendToAllPlayers("All team leaders have been chosen");
-			Chat.sendToGameMod("Please confirm the selection of teamleaders with /confirmleader or /resetleader");
+			Chat.sendToAllPlayersFromRegistry("command.registerteam.sucessfull.all");
+			Chat.sendToGameMod(StatCollector.translateToLocal("command.registerteam.sucessfull.gamemod"));
 			SpaceConfig.buildPhase = TeamBuildPhase.TBP_CONFIRM_LEADERS;
 		}
 	}

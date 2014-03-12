@@ -22,7 +22,7 @@ public class ConfirmLeaderCommand extends CommandHandler{
 		for(Team team : manager.getTeams()) {
 			EntityPlayerMP player = team.getTeamLeader();
 			player.setPositionAndUpdate(player.posX, player.posY+SetupStructureBuilder.height, player.posZ);
-			player.sendChatToPlayer(ChatMessageComponent.createFromText("Please select your team color by right clicking the color block."));
+			Chat.sendToPlayer(player, "command.resetleader.reseted");
 		}
 		
 		

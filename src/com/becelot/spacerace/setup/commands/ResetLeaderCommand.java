@@ -18,7 +18,7 @@ public class ResetLeaderCommand extends CommandHandler {
 			player.setPositionAndUpdate(0, 1, 0);
 		}
 		SetupStructureBuilder.buildTeamSelection(MinecraftServer.getServer().worldServerForDimension(SpaceConfig.dimensionId));
-		Chat.sendToAllPlayers("Leaders have been reseted. Please register your team again.");
+		Chat.sendToAllPlayersFromRegistry("command.resetleader.reseted");
 	}
 	
 	@Override

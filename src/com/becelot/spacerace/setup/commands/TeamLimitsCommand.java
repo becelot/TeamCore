@@ -1,9 +1,11 @@
 package com.becelot.spacerace.setup.commands;
 
 import net.minecraft.command.ICommandSender;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.packet.Packet3Chat;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatMessageComponent;
+import net.minecraft.util.StatCollector;
 
 import com.becelot.spacerace.SpaceConfig;
 import com.becelot.spacerace.SpaceraceState;
@@ -11,14 +13,13 @@ import com.becelot.spacerace.command.CommandHandler;
 import com.becelot.spacerace.player.PlayerEvent;
 import com.becelot.spacerace.setup.TeamBuildPhase;
 import com.becelot.spacerace.setup.TeamLeaderInteraction;
+import com.becelot.spacerace.util.Chat;
 import com.becelot.spacerace.util.SetupStructureBuilder;
 
 public class TeamLimitsCommand extends CommandHandler {
 
-	private ChatMessageComponent invalidArgument = ChatMessageComponent.createFromText("At least one argument was not a valid number");
-	private ChatMessageComponent invalidArgumentCount = ChatMessageComponent.createFromText("Please provide all parameters: <teamcount> <minMembers> <maxMembers>");
-
-	private String successfullSetup = "Team setup successfull. %d are competing, member count ranging from %d to %d";
+	private ChatMessageComponent invalidArgument = Chat.fromRegistry("command.teamlimit.invalidargument");
+	private ChatMessageComponent invalidArgumentCount = Chat.fromRegistry("command.teamlimit.invalidargumentcount");
 
 	public void processCommand(ICommandSender icommandsender, String[] astring) {
 		if (SpaceConfig.raceState == SpaceraceState.SR_PREPARING && SpaceConfig.buildPhase == TeamBuildPhase.TBP_SETUP) {
@@ -26,8 +27,9 @@ public class TeamLimitsCommand extends CommandHandler {
 				//Confirm selection
 				if (astring.length == 1) {
 					if (astring[0].toLowerCase().equals("ok")) {
-						MinecraftServer.getServer().getConfigurationManager().sendPacketToAllPlayers(new Packet3Chat(ChatMessageComponent.createFromText("[SERVER]: " + 
-								String.format(successfullSetup, SpaceConfig.teamCount, SpaceConfig.minMemberCount, SpaceConfig.maxMemberCount)), true));
+						Chat.sendToAllPlayersFromRegistryFormatted("command.teamlimit.successfull.server", 
+								SpaceConfig.teamCount, SpaceConfig.minMemberCount, SpaceConfig.maxMemberCount);
+						
 						SetupStructureBuilder.buildMidCage(MinecraftServer.getServer().worldServerForDimension(SpaceConfig.dimensionId), SpaceConfig.unbreakableGlassId);
 						SetupStructureBuilder.buildTeamSelection(MinecraftServer.getServer().worldServerForDimension(SpaceConfig.dimensionId));
 						SpaceConfig.buildPhase = TeamBuildPhase.TBP_CHOOSE_LEADERS;
@@ -58,7 +60,8 @@ public class TeamLimitsCommand extends CommandHandler {
 			}
 
 			//Send confirmation to GameMod
-			icommandsender.sendChatToPlayer(ChatMessageComponent.createFromText(String.format(successfullSetup, SpaceConfig.teamCount, SpaceConfig.minMemberCount, SpaceConfig.maxMemberCount)));
+			Chat.sendToPlayerFormatted((EntityPlayer)icommandsender, "command.teamlimit.successfull", 
+					SpaceConfig.teamCount, SpaceConfig.minMemberCount, SpaceConfig.maxMemberCount);
 		}
 	}
 

@@ -39,8 +39,12 @@ public class TeamMemberSelectionState extends FSMTeamBuilderState {
 			int z) {
 		if (team == 0 || team >= SpaceConfig.maxTeams) return;
 
+		//Check, if the player has already chosen a team
+		Team tea = TeamManager.getInstance().getTeamByPlayerName(entityPlayer.getDisplayName());
+		if (tea != null) return;
+		
 		//Get team index and teleport player in cage
-		Team tea = TeamManager.getInstance().getTeamByColor(TeamColor.fromNum(team));
+		tea = TeamManager.getInstance().getTeamByColor(TeamColor.fromNum(team));
 		if (tea != null) {
 			if (tea.getTeamSize() < SpaceConfig.maxMemberCount) {
 				int teamId =  tea.getId();
@@ -84,7 +88,6 @@ public class TeamMemberSelectionState extends FSMTeamBuilderState {
 	public void commandSend(String command, ICommandSender icommandsender,
 			String[] args) {
 		// Nothing here
-
 	}
 
 }

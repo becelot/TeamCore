@@ -1,6 +1,7 @@
 package com.becelot.spacerace.player;
 
 import net.minecraftforge.event.ForgeSubscribe;
+import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
 
@@ -22,6 +23,11 @@ public class PlayerEvent {
 				}
 			}
 		}
+	}
+	
+	@ForgeSubscribe
+	public void playerFallingDamage(LivingFallEvent event) {
+		event.setCanceled(true);
 	}
 	
 	public static void registerTeamInteractionListener(ITeamBlockInteractionEvent listener) {

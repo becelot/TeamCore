@@ -27,6 +27,8 @@ public class SpaceRaceMod {
 	
 	@Instance(value= "spaceracemod")
 	public static SpaceRaceMod instance;
+	
+	public PlayerEvent eventManager;
 
 	
 	@EventHandler
@@ -41,7 +43,8 @@ public class SpaceRaceMod {
 
 		GameRegistry.registerPlayerTracker(new PlayerTracker());
 		
-		MinecraftForge.EVENT_BUS.register(new PlayerEvent());
+		eventManager = new PlayerEvent();
+		MinecraftForge.EVENT_BUS.register(eventManager);
 	}
 	
 	@EventHandler

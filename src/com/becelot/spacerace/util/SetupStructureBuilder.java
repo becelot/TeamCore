@@ -1,6 +1,5 @@
 package com.becelot.spacerace.util;
 
-import net.minecraft.block.Block;
 import net.minecraft.world.World;
 
 import com.becelot.spacerace.SpaceConfig;
@@ -74,8 +73,9 @@ public class SetupStructureBuilder {
 				generatePlane(world, corners[k], corners[j], corners[k].clone().subtract(downVector), blockId);
 			}
 			
-			//Generate floor and ceilingblockId);
-			generatePlane(world, corners[0].subtract(downVector), corners[1].subtract(downVector), corners[3].subtract(downVector), Block.glass.blockID);
+			//Generate floor and ceiling
+			generatePlane(world, corners[0], corners[1], corners[3], blockId);
+			generatePlane(world, corners[0].subtract(downVector), corners[1].subtract(downVector), corners[3].subtract(downVector), blockId);
 		}
 	}
 	

@@ -9,6 +9,7 @@ import com.becelot.spacerace.command.GenericCommand;
 import com.becelot.spacerace.dimension.SpaceProvider;
 import com.becelot.spacerace.player.PlayerEvent;
 import com.becelot.spacerace.player.PlayerTracker;
+import com.becelot.spacerace.setup.SetupCommand;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -46,6 +47,7 @@ public class SpaceRaceMod {
 	@EventHandler
 	public void serverLoad(FMLServerStartingEvent event) {
 		GenericCommand.registerCommands(event);
+		SetupCommand.registerCommands(event);
 	}
 
 }

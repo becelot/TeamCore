@@ -8,13 +8,6 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.util.StatCollector;
 
 import com.becelot.spacerace.dimension.SpaceEnterCommand;
-import com.becelot.spacerace.setup.commands.ConfirmLeaderCommand;
-import com.becelot.spacerace.setup.commands.ConfirmMemberCommand;
-import com.becelot.spacerace.setup.commands.ResetLeaderCommand;
-import com.becelot.spacerace.setup.commands.ResetMemberCommand;
-import com.becelot.spacerace.setup.commands.SpaceraceStartCommand;
-import com.becelot.spacerace.setup.commands.TeamLimitsCommand;
-import com.becelot.spacerace.team.TeamRegisterCommand;
 import com.becelot.spacerace.team.TeamSendCommand;
 
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
@@ -31,14 +24,7 @@ public class GenericCommand implements ICommand {
 	 */
 	public static void registerCommands(FMLServerStartingEvent event) {
 		event.registerServerCommand(new GenericCommand("enter", new SpaceEnterCommand()));
-		event.registerServerCommand(new GenericCommand("registerteam", new TeamRegisterCommand()));
 		event.registerServerCommand(new GenericCommand("teamsend", new TeamSendCommand()));
-		event.registerServerCommand(new GenericCommand("teamlimits", new TeamLimitsCommand()));
-		event.registerServerCommand(new GenericCommand("startrace", new SpaceraceStartCommand()));
-		event.registerServerCommand(new GenericCommand("confirmleader", new ConfirmLeaderCommand()));
-		event.registerServerCommand(new GenericCommand("resetleader", new ResetLeaderCommand()));
-		event.registerServerCommand(new GenericCommand("confirmmember", new ConfirmMemberCommand()));
-		event.registerServerCommand(new GenericCommand("resetmember", new ResetMemberCommand()));
 	}
 	
 	/*

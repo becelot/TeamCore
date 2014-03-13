@@ -5,10 +5,21 @@ import net.minecraft.command.ICommandSender;
 import com.becelot.spacerace.SpaceConfig;
 import com.becelot.spacerace.command.GenericCommand;
 
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
+
 public class SetupCommand extends GenericCommand {
 	
 	private boolean needsGameModPermission = true;
 
+	public static void registerCommands(FMLServerStartingEvent event) {
+		event.registerServerCommand(new SetupCommand("registerteam", false));
+		event.registerServerCommand(new SetupCommand("teamlimits", true));
+		event.registerServerCommand(new SetupCommand("startrace", true));
+		event.registerServerCommand(new SetupCommand("confirmleader", true));
+		event.registerServerCommand(new SetupCommand("resetleader", true));
+		event.registerServerCommand(new SetupCommand("confirmmember", true));
+		event.registerServerCommand(new SetupCommand("resetmember", true));
+	}
 
 	
 	public SetupCommand(String commandName, boolean gameModPermission) {

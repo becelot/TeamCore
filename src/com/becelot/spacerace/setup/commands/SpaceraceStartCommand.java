@@ -3,12 +3,15 @@ package com.becelot.spacerace.setup.commands;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.EnumGameType;
 
 import com.becelot.spacerace.SpaceConfig;
 import com.becelot.spacerace.SpaceraceState;
 import com.becelot.spacerace.command.CommandHandler;
 import com.becelot.spacerace.dimension.DimensionTeleporter;
 import com.becelot.spacerace.setup.TeamBuildPhase;
+import com.becelot.spacerace.util.Chat;
+import com.becelot.spacerace.util.SetupStructureBuilder;
 
 public class SpaceraceStartCommand extends CommandHandler {
 
@@ -27,7 +30,16 @@ public class SpaceraceStartCommand extends CommandHandler {
 			SpaceConfig.raceState = SpaceraceState.SR_PREPARING;
 			SpaceConfig.buildPhase = TeamBuildPhase.TBP_SETUP;
 		} else if (SpaceConfig.buildPhase == TeamBuildPhase.TBP_DONE) {
-			//TODO: Countdown
+			//TODO: Add Countdown, take this functionality, if ready
+			//TODO: Register player listener, that prevents one time fall damage!
+			//Remove all cages
+			for (Object o : MinecraftServer.getServer().getConfigurationManager().playerEntityList) {
+				EntityPlayerMP player = (EntityPlayerMP)o;
+				player.setGameType(EnumGameType.SURVIVAL);
+			}
+			SetupStructureBuilder.buildWorldCage(MinecraftServer.getServer().worldServerForDimension(0), 0);
+			SpaceConfig.raceState = SpaceraceState.SR_STARTED;
+			Chat.sendToAllPlayersFromRegistry("command.startrace.start");
 		}
 	}
 

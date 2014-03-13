@@ -30,6 +30,7 @@ command.teamsend.format=%s [%s§r]: %s
 #StartRace
 command.startrace.usage=/startrace
 command.startrace.aliases=racestart,sr,rs
+command.startrace.start=The race has started. Good luck!
 
 #ConfirmLeader
 command.confirmleader.usage=/confirmleader

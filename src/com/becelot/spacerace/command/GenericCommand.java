@@ -1,9 +1,11 @@
 package com.becelot.spacerace.command;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
+
+import net.minecraft.command.ICommand;
+import net.minecraft.command.ICommandSender;
+import net.minecraft.util.StatCollector;
 
 import com.becelot.spacerace.dimension.SpaceEnterCommand;
 import com.becelot.spacerace.setup.commands.ConfirmLeaderCommand;
@@ -15,9 +17,6 @@ import com.becelot.spacerace.setup.commands.TeamLimitsCommand;
 import com.becelot.spacerace.team.TeamRegisterCommand;
 import com.becelot.spacerace.team.TeamSendCommand;
 
-import net.minecraft.command.ICommand;
-import net.minecraft.command.ICommandSender;
-import net.minecraft.util.StatCollector;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
 public class GenericCommand implements ICommand {
@@ -31,21 +30,21 @@ public class GenericCommand implements ICommand {
 	 * All Command should be registered here
 	 */
 	public static void registerCommands(FMLServerStartingEvent event) {
-		event.registerServerCommand(new GenericCommand("enter", SpaceEnterCommand.class));
-		event.registerServerCommand(new GenericCommand("registerteam", TeamRegisterCommand.class));
-		event.registerServerCommand(new GenericCommand("teamsend", TeamSendCommand.class));
-		event.registerServerCommand(new GenericCommand("teamlimits", TeamLimitsCommand.class));
-		event.registerServerCommand(new GenericCommand("startrace", SpaceraceStartCommand.class));
-		event.registerServerCommand(new GenericCommand("confirmleader", ConfirmLeaderCommand.class));
-		event.registerServerCommand(new GenericCommand("resetleader", ResetLeaderCommand.class));
-		event.registerServerCommand(new GenericCommand("confirmmember", ConfirmMemberCommand.class));
-		event.registerServerCommand(new GenericCommand("resetmember", ResetMemberCommand.class));
+		event.registerServerCommand(new GenericCommand("enter", new SpaceEnterCommand()));
+		event.registerServerCommand(new GenericCommand("registerteam", new TeamRegisterCommand()));
+		event.registerServerCommand(new GenericCommand("teamsend", new TeamSendCommand()));
+		event.registerServerCommand(new GenericCommand("teamlimits", new TeamLimitsCommand()));
+		event.registerServerCommand(new GenericCommand("startrace", new SpaceraceStartCommand()));
+		event.registerServerCommand(new GenericCommand("confirmleader", new ConfirmLeaderCommand()));
+		event.registerServerCommand(new GenericCommand("resetleader", new ResetLeaderCommand()));
+		event.registerServerCommand(new GenericCommand("confirmmember", new ConfirmMemberCommand()));
+		event.registerServerCommand(new GenericCommand("resetmember", new ResetMemberCommand()));
 	}
 	
 	/*
 	 * Constructs a new command
 	 */
-	public GenericCommand(String commandName, Class<? extends CommandHandler> clazz) {
+	public GenericCommand(String commandName, CommandHandler handler) {
 		this.commandName = commandName;
 		this.usage = StatCollector.translateToLocal("command." + commandName + ".usage");
 		this.aliases = new ArrayList<String>();
@@ -54,26 +53,7 @@ public class GenericCommand implements ICommand {
 			this.aliases.add(a);
 		}
 		
-		
-		Constructor<?>[] ctors = clazz.getDeclaredConstructors();
-		Constructor<?> ctor = null;
-		for (int i = 0; i < ctors.length; i++) {
-			ctor = ctors[i];
-			if (ctor.getGenericParameterTypes().length == 0)
-				break;
-		}
-		try {
-			ctor.setAccessible(true);
-			this.commandHandler = (CommandHandler)ctor.newInstance();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			e.printStackTrace();
-		}
+		this.commandHandler = handler;
 	}
 	
 

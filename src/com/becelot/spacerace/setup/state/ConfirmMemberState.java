@@ -9,7 +9,6 @@ import net.minecraft.util.StatCollector;
 import com.becelot.spacerace.SpaceConfig;
 import com.becelot.spacerace.dimension.DimensionTeleporter;
 import com.becelot.spacerace.setup.FSMTeamBuilderState;
-import com.becelot.spacerace.setup.TeamBuildPhase;
 import com.becelot.spacerace.team.Team;
 import com.becelot.spacerace.team.TeamManager;
 import com.becelot.spacerace.util.Chat;
@@ -64,7 +63,6 @@ public class ConfirmMemberState extends FSMTeamBuilderState {
 		Chat.sendToAllPlayersFromRegistry("command.confirmmember.confirmed");
 		Chat.sendToGameMod(StatCollector.translateToLocal("command.confirmmember.confirmed.gamemod"));
 		
-		SpaceConfig.buildPhase = TeamBuildPhase.TBP_DONE;
 		this.switchState(fsmReady);
 	}
 

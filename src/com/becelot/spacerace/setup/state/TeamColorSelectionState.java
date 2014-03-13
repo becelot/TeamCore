@@ -6,9 +6,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatMessageComponent;
 
 import com.becelot.spacerace.SpaceConfig;
-import com.becelot.spacerace.player.PlayerEvent;
 import com.becelot.spacerace.setup.FSMTeamBuilderState;
-import com.becelot.spacerace.setup.TeamMemberInteraction;
 import com.becelot.spacerace.team.Team;
 import com.becelot.spacerace.team.TeamColor;
 import com.becelot.spacerace.team.TeamManager;
@@ -85,7 +83,6 @@ public class TeamColorSelectionState extends FSMTeamBuilderState {
 			this.switchState(fsmTeamMemberSelection);
 			SetupStructureBuilder.buildTeamSelection(MinecraftServer.getServer().worldServerForDimension(SpaceConfig.dimensionId), false);
 			SetupStructureBuilder.buildWorldCage(MinecraftServer.getServer().worldServerForDimension(0), SpaceConfig.unbreakableGlassId);
-			PlayerEvent.registerTeamInteractionListener(new TeamMemberInteraction());
 		}
 
 	}

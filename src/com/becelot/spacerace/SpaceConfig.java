@@ -1,9 +1,6 @@
 package com.becelot.spacerace;
 
 import net.minecraftforge.common.Configuration;
-
-import com.becelot.spacerace.setup.TeamBuildPhase;
-
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 public final class SpaceConfig {
@@ -15,7 +12,6 @@ public final class SpaceConfig {
 	public static int maxTeams = 7;
 	
 	public static SpaceraceState raceState = SpaceraceState.SR_IDLE;
-	public static TeamBuildPhase buildPhase = TeamBuildPhase.TBP_IDLE;
 	
 	public static int teamCount = 4;
 	public static int minMemberCount = 2;

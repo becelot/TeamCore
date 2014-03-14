@@ -8,11 +8,13 @@ import net.minecraft.world.EnumGameType;
 
 import com.becelot.spacerace.SpaceConfig;
 import com.becelot.spacerace.SpaceraceState;
+import com.becelot.spacerace.setup.Countdown;
 import com.becelot.spacerace.setup.FSMTeamBuilderState;
+import com.becelot.spacerace.setup.ICountdownEvent;
 import com.becelot.spacerace.util.Chat;
 import com.becelot.spacerace.util.SetupStructureBuilder;
 
-public class ReadyState extends FSMTeamBuilderState {
+public class ReadyState extends FSMTeamBuilderState implements ICountdownEvent {
 
 	public ReadyState() {
 		super();
@@ -25,20 +27,25 @@ public class ReadyState extends FSMTeamBuilderState {
 		// Nothing here
 
 	}
-
-	@Override
-	public void commandSend(String command, ICommandSender icommandsender,
-			String[] args) {
-		//TODO: Add Countdown, take this functionality, if ready
-		//TODO: Register player listener, that prevents one time fall damage!
-		//Remove all cages
+	
+	public void countdownOver() {
+		//Set SURVIVAL mode for all players
 		for (Object o : MinecraftServer.getServer().getConfigurationManager().playerEntityList) {
 			EntityPlayerMP player = (EntityPlayerMP)o;
 			player.setGameType(EnumGameType.SURVIVAL);
 		}
+		
+		//Remove all cages
 		SetupStructureBuilder.buildWorldCage(MinecraftServer.getServer().worldServerForDimension(0), 0);
 		SpaceConfig.raceState = SpaceraceState.SR_STARTED;
 		Chat.sendToAllPlayersFromRegistry("command.startrace.start");
+	}
+
+	@Override
+	public void commandSend(String command, ICommandSender icommandsender,
+			String[] args) {
+		(new Countdown(60, new int[] {0, 1, 2, 3, 10, 15, 30, 45}, this)).startCountdown();
+
 	}
 
 }

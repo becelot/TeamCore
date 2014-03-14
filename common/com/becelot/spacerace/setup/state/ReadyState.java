@@ -44,7 +44,7 @@ public class ReadyState extends FSMTeamBuilderState implements ICountdownEvent {
 	@Override
 	public void commandSend(String command, ICommandSender icommandsender,
 			String[] args) {
-		(new Countdown(60, new int[] {0, 1, 2, 3, 10, 15, 30, 45}, this)).startCountdown();
+		(new Countdown(61, new int[] {0, 1, 2, 3, 10, 15, 30, 45, 60}, this)).startCountdown();
 
 	}
 

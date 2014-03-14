@@ -24,7 +24,7 @@ public class TeamMemberSelectionState extends FSMTeamBuilderState {
 	/*
 	 * Checks, if the current phase has been completed
 	 */
-	private boolean checkComplete() {
+	public boolean checkComplete() {
 		for (Object o : MinecraftServer.getServer().getConfigurationManager().playerEntityList) {
 			EntityPlayer player = (EntityPlayer)o;
 			if (TeamManager.getInstance().getTeamByPlayerName(player.getDisplayName()) == null) {
@@ -32,6 +32,18 @@ public class TeamMemberSelectionState extends FSMTeamBuilderState {
 			}
 		}
 		return true;
+	}
+	
+	public void onComplete() {
+		//Teleport all team leaders in their cage
+		for (Team t : TeamManager.getInstance().getTeams()) {
+			EntityPlayerMP player = t.getTeamLeader();
+			double angle = 360f / (float)SpaceConfig.teamCount * t.getId(); 
+			int xPos = (int)Math.round((SetupStructureBuilder.radius + SetupStructureBuilder.cubicCageWidth) * Math.cos(angle * Math.PI / 360f));
+			int zPos = (int)Math.round((SetupStructureBuilder.radius + SetupStructureBuilder.cubicCageWidth) * Math.sin(angle * Math.PI / 360f));
+			
+			DimensionTeleporter.transferPlayerToDimension(player, 0, xPos, SetupStructureBuilder.cubicCageHeight + 2, zPos);
+		}
 	}
 
 	@Override
@@ -61,15 +73,7 @@ public class TeamMemberSelectionState extends FSMTeamBuilderState {
 				
 				//If phase is complete
 				if (this.checkComplete()) {
-					//Teleport all team leaders in their cage
-					for (Team t : TeamManager.getInstance().getTeams()) {
-						EntityPlayerMP player = t.getTeamLeader();
-						angle = 360f / (float)SpaceConfig.teamCount * t.getId(); 
-						xPos = (int)Math.round((SetupStructureBuilder.radius + SetupStructureBuilder.cubicCageWidth) * Math.cos(angle * Math.PI / 360f));
-						zPos = (int)Math.round((SetupStructureBuilder.radius + SetupStructureBuilder.cubicCageWidth) * Math.sin(angle * Math.PI / 360f));
-						
-						DimensionTeleporter.transferPlayerToDimension(player, 0, xPos, SetupStructureBuilder.cubicCageHeight + 2, zPos);
-					}
+					this.onComplete();
 					
 					Chat.sendToAllPlayersFromRegistry("event.team.choose.all");
 					Chat.sendToGameMod(StatCollector.translateToLocal("event.team.choose.gamemod"));

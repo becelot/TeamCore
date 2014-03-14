@@ -80,7 +80,12 @@ public class TeamColorSelectionState extends FSMTeamBuilderState {
 			
 
 			//Next phase
-			this.switchState(fsmTeamMemberSelection);
+			if (((TeamMemberSelectionState)fsmTeamMemberSelection).checkComplete()) {
+				((TeamMemberSelectionState)fsmTeamMemberSelection).onComplete();
+				this.switchState(fsmReady);
+			} else {
+				this.switchState(fsmTeamMemberSelection);
+			}
 			SetupStructureBuilder.buildTeamSelection(MinecraftServer.getServer().worldServerForDimension(SpaceConfig.dimensionId), false);
 			SetupStructureBuilder.buildWorldCage(MinecraftServer.getServer().worldServerForDimension(0), SpaceConfig.unbreakableGlassId);
 		}

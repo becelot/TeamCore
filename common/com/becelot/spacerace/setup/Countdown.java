@@ -1,6 +1,7 @@
 package com.becelot.spacerace.setup;
 
 import java.util.EnumSet;
+import java.util.Map;
 
 import com.becelot.spacerace.util.Chat;
 
@@ -13,25 +14,24 @@ public class Countdown implements ITickHandler {
 
 	private long lastTick;
 	private int secondsRemaining;
-	private int[] notifications;
+	private Map<Integer, String> notifications;
 	private ICountdownEvent event;
+	private EnumSet<TickType> tickType;
 	
-	public Countdown(int seconds, int[] messages, ICountdownEvent event) {
-		secondsRemaining = seconds;
+	public Countdown(int seconds, Map<Integer, String> messages, ICountdownEvent event) {
+		this.secondsRemaining = seconds;
 		this.notifications = messages;
 		this.event = event;
 	}
 
 	public void startCountdown() {
 		lastTick = System.nanoTime();
+		tickType = EnumSet.of(TickType.WORLD);
 		TickRegistry.registerTickHandler(this, Side.SERVER);
 	}
 	
 	@Override
 	public void tickStart(EnumSet<TickType> type, Object... tickData) {
-		//Check, if this countdown is over
-		//TODO: Unregister this tick
-		if (secondsRemaining == 0) return;
 		long tick = System.nanoTime();
 		
 		//If one second has passed
@@ -41,17 +41,11 @@ public class Countdown implements ITickHandler {
 			
 			if (secondsRemaining == 0) {
 				event.countdownOver();
+				tickType = EnumSet.noneOf(TickType.class);
 			}
 			
-			boolean found = false;
-			for (int i : this.notifications) {
-				if (i == secondsRemaining) {
-					found = true;
-					break;
-				}
-			}
-			if (found) {
-				Chat.sendToAllPlayers("" + secondsRemaining + " to start!");
+			if (notifications.containsKey(secondsRemaining)) {
+				Chat.sendToAllPlayers(notifications.get(secondsRemaining));
 			}
 			
 		}
@@ -60,12 +54,11 @@ public class Countdown implements ITickHandler {
 	@Override
 	public void tickEnd(EnumSet<TickType> type, Object... tickData) {
 		// Nothing here
-
 	}
 
 	@Override
 	public EnumSet<TickType> ticks() {
-		return null;
+		return tickType;
 	}
 
 	@Override

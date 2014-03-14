@@ -12,6 +12,7 @@ import com.becelot.spacerace.setup.Countdown;
 import com.becelot.spacerace.setup.FSMTeamBuilderState;
 import com.becelot.spacerace.setup.ICountdownEvent;
 import com.becelot.spacerace.util.Chat;
+import com.becelot.spacerace.util.ListHelper;
 import com.becelot.spacerace.util.SetupStructureBuilder;
 
 public class ReadyState extends FSMTeamBuilderState implements ICountdownEvent {
@@ -44,7 +45,7 @@ public class ReadyState extends FSMTeamBuilderState implements ICountdownEvent {
 	@Override
 	public void commandSend(String command, ICommandSender icommandsender,
 			String[] args) {
-		(new Countdown(61, new int[] {0, 1, 2, 3, 10, 15, 30, 45, 60}, this)).startCountdown();
+		(new Countdown(61, ListHelper.countdownNotificationsList("countdown.startrace"), this)).startCountdown();
 
 	}
 

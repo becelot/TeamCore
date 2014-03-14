@@ -54,6 +54,21 @@ command.resetmember.usage=/resetmember
 command.resetmember.aliases=resetmembers
 command.resetmember.reseted=Members have been reseted. Please choose your team again.
 
+####
+# Countdown
+####
+
+countdown.startrace.thresholds=60,45,30,15,10,5,3,2,1,0
+countdown.startrace.time.60=The race will begin in 60 seconds"
+countdown.startrace.time.45=45 seconds remaining
+countdown.startrace.time.30=30 seconds remaining
+countdown.startrace.time.15=15 seconds remaining
+countdown.startrace.time.10=10 more seconds!
+countdown.startrace.time.5=Get ready! 5 seconds to go.
+countdown.startrace.time.3=3
+countdown.startrace.time.2=2
+countdown.startrace.time.1=1
+countdown.startrace.time.0=Go!
 #Events
 event.team.choose.all=All players have chosen their teams!
 event.team.choose.gamemod=Pleader confirm player distribution with /confirmmember or /resetmember!

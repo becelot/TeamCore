@@ -28,7 +28,7 @@ public class SpaceRaceMod {
 	@Instance(value= "spaceracemod")
 	public static SpaceRaceMod instance;
 	
-	public PlayerEvent eventManager;
+	public static PlayerEvent eventManager;
 
 	
 	@EventHandler

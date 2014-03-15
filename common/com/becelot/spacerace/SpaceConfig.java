@@ -11,6 +11,9 @@ public final class SpaceConfig {
 	public static int dimensionId = 5;
 	public static int maxTeams = 7;
 	
+	public static int pvpPreventionMinutes;
+	public static boolean pvpFriendlyFireOn;
+	
 	public static SpaceraceState raceState = SpaceraceState.SR_IDLE;
 	
 	public static int teamCount = 4;
@@ -28,6 +31,12 @@ public final class SpaceConfig {
 		gameMod = config.get(Configuration.CATEGORY_GENERAL, "gameMod", "onlinefreak").getString();
 		dimensionId = config.get(Configuration.CATEGORY_GENERAL, "dimensionId", 5).getInt();
 		maxTeams = config.get(Configuration.CATEGORY_GENERAL, "maxTeams", 7).getInt();
+		
+		pvpPreventionMinutes = config.get(Configuration.CATEGORY_GENERAL, "pvpPreventionMinutes", 30).getInt();
+		pvpFriendlyFireOn = config.get("PVP", "pvpFriendlyFireOn", false).getBoolean(false);
+		
+		if (pvpPreventionMinutes < 0)
+			pvpPreventionMinutes = 0;
 		
 		config.save();
 	}

@@ -1,5 +1,7 @@
 package com.becelot.spacerace.setup.state;
 
+import java.util.HashMap;
+
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -8,6 +10,7 @@ import net.minecraft.world.EnumGameType;
 
 import com.becelot.spacerace.SpaceConfig;
 import com.becelot.spacerace.SpaceraceState;
+import com.becelot.spacerace.player.PvpPrevention;
 import com.becelot.spacerace.setup.Countdown;
 import com.becelot.spacerace.setup.FSMTeamBuilderState;
 import com.becelot.spacerace.setup.ICountdownEvent;
@@ -40,13 +43,15 @@ public class ReadyState extends FSMTeamBuilderState implements ICountdownEvent {
 		SetupStructureBuilder.buildWorldCage(MinecraftServer.getServer().worldServerForDimension(0), 0);
 		SpaceConfig.raceState = SpaceraceState.SR_STARTED;
 		Chat.sendToAllPlayersFromRegistry("command.startrace.start");
+		
+		(new Countdown(10, new HashMap<Integer, String>(), new PvpPrevention())).startCountdown();
 	}
 
 	@Override
 	public void commandSend(String command, ICommandSender icommandsender,
 			String[] args) {
 		(new Countdown(61, ListHelper.countdownNotificationsList("countdown.startrace"), this)).startCountdown();
-
+		this.switchState(fsmStarted);
 	}
 
 }

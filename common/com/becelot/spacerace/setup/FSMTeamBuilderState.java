@@ -10,6 +10,7 @@ import com.becelot.spacerace.setup.state.ConfirmMemberState;
 import com.becelot.spacerace.setup.state.FSMIdleState;
 import com.becelot.spacerace.setup.state.ReadyState;
 import com.becelot.spacerace.setup.state.RegisterTeamState;
+import com.becelot.spacerace.setup.state.StartedState;
 import com.becelot.spacerace.setup.state.TeamColorSelectionState;
 import com.becelot.spacerace.setup.state.TeamLimitState;
 import com.becelot.spacerace.setup.state.TeamMemberSelectionState;
@@ -24,6 +25,7 @@ public abstract class FSMTeamBuilderState implements ITeamBlockInteractionEvent 
 	public static final FSMTeamBuilderState fsmTeamMemberSelection = new TeamMemberSelectionState();
 	public static final FSMTeamBuilderState fsmConfirmMember = new ConfirmMemberState();
 	public static final FSMTeamBuilderState fsmReady = new ReadyState();
+	public static final FSMTeamBuilderState fsmStarted = new StartedState();
 	
 	
 	protected List<String> requiredCommandNames;

@@ -1,6 +1,8 @@
 package com.becelot.spacerace.player;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.ForgeSubscribe;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
@@ -22,6 +24,13 @@ public class PlayerEvent {
 					listener.interact(event.entityPlayer, meta, event.x, event.y, event.z);
 				}
 			}
+		}
+	}
+	
+	@ForgeSubscribe
+	public void preventPvp(LivingAttackEvent event) {
+		if (event.source.getSourceOfDamage() instanceof EntityPlayer && event.entity instanceof EntityPlayer) {
+			event.setCanceled(true);
 		}
 	}
 	

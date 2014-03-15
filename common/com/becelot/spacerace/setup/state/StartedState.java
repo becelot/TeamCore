@@ -10,14 +10,12 @@ public class StartedState extends FSMTeamBuilderState {
 	@Override
 	public void interact(EntityPlayer entityPlayer, int team, int x, int y,
 			int z) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void commandSend(String command, ICommandSender icommandsender,
 			String[] args) {
-		// TODO Auto-generated method stub
 
 	}
 

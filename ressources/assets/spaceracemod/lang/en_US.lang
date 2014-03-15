@@ -59,7 +59,7 @@ command.resetmember.reseted=Members have been reseted. Please choose your team a
 ####
 
 countdown.startrace.thresholds=60,45,30,15,10,5,3,2,1,0
-countdown.startrace.time.60=The race will begin in 60 seconds"
+countdown.startrace.time.60=The race will begin in 60 seconds!
 countdown.startrace.time.45=45 seconds remaining
 countdown.startrace.time.30=30 seconds remaining
 countdown.startrace.time.15=15 seconds remaining
@@ -69,6 +69,14 @@ countdown.startrace.time.3=3
 countdown.startrace.time.2=2
 countdown.startrace.time.1=1
 countdown.startrace.time.0=Go!
+
+countdown.pvpprevention.thresholds=1800,600,300,60,0
+countdown.pvpprevention.time.1800=Pvp protection has been enabled. 30min until pvp is enabled.
+countdown.pvpprevention.time.600=Pvp will be enabled in 10 minutes.
+countdown.pvpprevention.time.300=5 minutes left until pvp is enabled!
+countdown.pvpprevention.time.60=1 minute to pvp!
+countdown.pvpprevention.time.0=Pvp has been enabled!
+
 #Events
 event.team.choose.all=All players have chosen their teams!
 event.team.choose.gamemod=Pleader confirm player distribution with /confirmmember or /resetmember!

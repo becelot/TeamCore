@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 
 import com.becelot.teamcore.TeamConfig;
+import com.becelot.teamcore.TeamCoreMod;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
@@ -48,7 +49,7 @@ public class TeamSelectionBlock extends Block {
 		
 		
 		for (int i = 0; i < TeamConfig.maxTeams; i++) {
-			icons[i] = par1IconRegister.registerIcon("spaceracemod:teamselection" + i);
+			icons[i] = par1IconRegister.registerIcon( TeamCoreMod.modid + ":teamselection" + i);
 		}
 	}
 	

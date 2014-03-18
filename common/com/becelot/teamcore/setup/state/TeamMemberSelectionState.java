@@ -7,7 +7,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatMessageComponent;
 import net.minecraft.util.StatCollector;
 
-import com.becelot.teamcore.SpaceConfig;
+import com.becelot.teamcore.TeamConfig;
 import com.becelot.teamcore.dimension.DimensionTeleporter;
 import com.becelot.teamcore.setup.FSMTeamBuilderState;
 import com.becelot.teamcore.team.Team;
@@ -38,7 +38,7 @@ public class TeamMemberSelectionState extends FSMTeamBuilderState {
 		//Teleport all team leaders in their cage
 		for (Team t : TeamManager.getInstance().getTeams()) {
 			EntityPlayerMP player = t.getTeamLeader();
-			double angle = 360f / (float)SpaceConfig.teamCount * t.getId(); 
+			double angle = 360f / (float)TeamConfig.teamCount * t.getId(); 
 			int xPos = (int)Math.round((SetupStructureBuilder.radius + SetupStructureBuilder.cubicCageWidth) * Math.cos(angle * Math.PI / 360f));
 			int zPos = (int)Math.round((SetupStructureBuilder.radius + SetupStructureBuilder.cubicCageWidth) * Math.sin(angle * Math.PI / 360f));
 			
@@ -49,7 +49,7 @@ public class TeamMemberSelectionState extends FSMTeamBuilderState {
 	@Override
 	public void interact(EntityPlayer entityPlayer, int team, int x, int y,
 			int z) {
-		if (team == 0 || team >= SpaceConfig.maxTeams) return;
+		if (team == 0 || team >= TeamConfig.maxTeams) return;
 
 		//Check, if the player has already chosen a team
 		Team tea = TeamManager.getInstance().getTeamByPlayerName(entityPlayer.getDisplayName());
@@ -58,10 +58,10 @@ public class TeamMemberSelectionState extends FSMTeamBuilderState {
 		//Get team index and teleport player in cage
 		tea = TeamManager.getInstance().getTeamByColor(TeamColor.fromNum(team));
 		if (tea != null) {
-			if (tea.getTeamSize() < SpaceConfig.maxMemberCount) {
+			if (tea.getTeamSize() < TeamConfig.maxMemberCount) {
 				int teamId =  tea.getId();
 
-				double angle = 360f / (float)SpaceConfig.teamCount * teamId; 
+				double angle = 360f / (float)TeamConfig.teamCount * teamId; 
 				int xPos = (int)Math.round((SetupStructureBuilder.radius + SetupStructureBuilder.cubicCageWidth) * Math.cos(angle * Math.PI / 360f));
 				int zPos = (int)Math.round((SetupStructureBuilder.radius + SetupStructureBuilder.cubicCageWidth) * Math.sin(angle * Math.PI / 360f));
 

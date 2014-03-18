@@ -5,7 +5,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 
-import com.becelot.teamcore.SpaceConfig;
+import com.becelot.teamcore.TeamConfig;
 import com.becelot.teamcore.setup.FSMTeamBuilderState;
 import com.becelot.teamcore.team.Team;
 import com.becelot.teamcore.team.TeamManager;
@@ -32,7 +32,7 @@ public class ConfirmLeaderState extends FSMTeamBuilderState {
 			EntityPlayer player = (EntityPlayer)o;
 			player.setPositionAndUpdate(0, 1, 0);
 		}
-		SetupStructureBuilder.buildTeamSelection(MinecraftServer.getServer().worldServerForDimension(SpaceConfig.dimensionId));
+		SetupStructureBuilder.buildTeamSelection(MinecraftServer.getServer().worldServerForDimension(TeamConfig.dimensionId));
 		Chat.sendToAllPlayersFromRegistry("command.resetleader.reseted");
 		
 		this.switchState(fsmRegisterTeam);

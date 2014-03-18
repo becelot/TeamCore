@@ -2,7 +2,7 @@ package com.becelot.teamcore.setup;
 
 import net.minecraft.command.ICommandSender;
 
-import com.becelot.teamcore.SpaceConfig;
+import com.becelot.teamcore.TeamConfig;
 import com.becelot.teamcore.command.GenericCommand;
 
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
@@ -34,7 +34,7 @@ public class SetupCommand extends GenericCommand {
 	
 	@Override
 	public boolean canCommandSenderUseCommand(ICommandSender icommandsender) {
-		return needsGameModPermission ? icommandsender.getCommandSenderName().equals(SpaceConfig.gameMod) : true;
+		return needsGameModPermission ? icommandsender.getCommandSenderName().equals(TeamConfig.gameMod) : true;
 	}
 
 }

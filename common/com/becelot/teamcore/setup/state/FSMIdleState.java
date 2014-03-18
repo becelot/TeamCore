@@ -5,7 +5,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 
-import com.becelot.teamcore.SpaceConfig;
+import com.becelot.teamcore.TeamConfig;
 import com.becelot.teamcore.dimension.DimensionTeleporter;
 import com.becelot.teamcore.setup.FSMTeamBuilderState;
 
@@ -27,7 +27,7 @@ public class FSMIdleState extends FSMTeamBuilderState {
 		for(Object player : MinecraftServer.getServer().getConfigurationManager().playerEntityList) {
 			if (player instanceof EntityPlayerMP) {
 				EntityPlayerMP playerMP = (EntityPlayerMP)player;
-				DimensionTeleporter.transferPlayerToDimension(playerMP, SpaceConfig.dimensionId, 0, 1, 0);
+				DimensionTeleporter.transferPlayerToDimension(playerMP, TeamConfig.dimensionId, 0, 1, 0);
 			}
 		}
 		

@@ -7,7 +7,7 @@ import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
 
-import com.becelot.teamcore.SpaceConfig;
+import com.becelot.teamcore.TeamConfig;
 import com.becelot.teamcore.setup.ITeamBlockInteractionEvent;
 
 public class PlayerEvent {
@@ -18,7 +18,7 @@ public class PlayerEvent {
 	public void playerInteract(PlayerInteractEvent event) {
 		if (event.action == Action.RIGHT_CLICK_BLOCK) {
 			int id = event.entityPlayer.worldObj.getBlockId(event.x, event.y, event.z);
-			if (id == SpaceConfig.teamSelectionId) {
+			if (id == TeamConfig.teamSelectionId) {
 				int meta = event.entityPlayer.worldObj.getBlockMetadata(event.x, event.y, event.z);
 				if (listener != null) {
 					listener.interact(event.entityPlayer, meta, event.x, event.y, event.z);

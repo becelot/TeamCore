@@ -19,24 +19,24 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid = "spaceracemod", name="SpaceRace", version="0.0.1")
+@Mod(modid = "teamcoremod", name="TeamCore", version="0.0.1")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
-public class SpaceRaceMod {
+public class TeamCoreMod {
 	
 	public static final int dimensionId = 5;
 	
-	@Instance(value= "spaceracemod")
-	public static SpaceRaceMod instance;
+	@Instance(value= "teamcoremod")
+	public static TeamCoreMod instance;
 	
 	public static PlayerEvent eventManager;
 
 	
 	@EventHandler
 	public void preLoad(FMLPreInitializationEvent event) {
-		SpaceConfig.loadConfig(event);
+		TeamConfig.loadConfig(event);
 		
-		DimensionManager.registerProviderType(SpaceConfig.dimensionId, SpaceProvider.class, false);
-		DimensionManager.registerDimension(SpaceConfig.dimensionId, SpaceConfig.dimensionId);
+		DimensionManager.registerProviderType(TeamConfig.dimensionId, SpaceProvider.class, false);
+		DimensionManager.registerDimension(TeamConfig.dimensionId, TeamConfig.dimensionId);
 		
 		TeamSelectionBlock.register();
 		UnbreakableGlass.register();

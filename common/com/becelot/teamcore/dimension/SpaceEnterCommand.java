@@ -4,7 +4,7 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ChatMessageComponent;
 
-import com.becelot.teamcore.SpaceConfig;
+import com.becelot.teamcore.TeamConfig;
 import com.becelot.teamcore.command.CommandHandler;
 
 
@@ -18,8 +18,8 @@ public class SpaceEnterCommand extends CommandHandler {
 	public void processCommand(ICommandSender icommandsender, String[] astring) {
 		if (icommandsender instanceof EntityPlayerMP) {
 			EntityPlayerMP player = (EntityPlayerMP)icommandsender;
-			if (player.dimension != SpaceConfig.dimensionId)
-				DimensionTeleporter.transferPlayerToDimension(player, SpaceConfig.dimensionId);
+			if (player.dimension != TeamConfig.dimensionId)
+				DimensionTeleporter.transferPlayerToDimension(player, TeamConfig.dimensionId);
 			else 
 				DimensionTeleporter.transferPlayerToDimension(player, 0);
 			

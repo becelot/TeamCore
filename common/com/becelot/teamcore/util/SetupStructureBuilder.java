@@ -2,7 +2,7 @@ package com.becelot.teamcore.util;
 
 import net.minecraft.world.World;
 
-import com.becelot.teamcore.SpaceConfig;
+import com.becelot.teamcore.TeamConfig;
 
 public class SetupStructureBuilder {
 	public static final int radius = 10;
@@ -51,7 +51,7 @@ public class SetupStructureBuilder {
 	 * Builds the starting point for the different teams.
 	 */
 	public static void buildWorldCage(World world, int blockId) {
-		int teams = SpaceConfig.teamCount;
+		int teams = TeamConfig.teamCount;
 		Vector[] corners = new Vector[4];
 		Vector downVector = new Vector(0, -cubicCageWidth, 0);
 		
@@ -107,22 +107,22 @@ public class SetupStructureBuilder {
 	 */
 	public static void buildTeamSelection(World world, boolean cages) {
 		for (int i = 0; i < 6; i++) {
-			double angle = i * (360f / (SpaceConfig.maxTeams - 1f));
+			double angle = i * (360f / (TeamConfig.maxTeams - 1f));
 			
 			//Calculate midpoints
 			int x = (int)Math.round(((radius + distance) * Math.cos(angle * conversion)));
 			int y = (int)Math.round(((radius + distance) * Math.sin(angle * conversion)));
 			
-			world.setBlock(x, 1, y, SpaceConfig.teamSelectionId, i+1, 1+2);
+			world.setBlock(x, 1, y, TeamConfig.teamSelectionId, i+1, 1+2);
 			
 			
 			//Generate Cage
 			if (cages) {
 				for (int j = 0; j < height; j++) {
-					world.setBlock(x-1, j+2, y, SpaceConfig.unbreakableGlassId, 0, 1+2+4);
-					world.setBlock(x+1, j+2, y, SpaceConfig.unbreakableGlassId, 0, 1+2+4);
-					world.setBlock(x, j+2, y+1, SpaceConfig.unbreakableGlassId, 0, 1+2+4);
-					world.setBlock(x, j+2, y-1, SpaceConfig.unbreakableGlassId, 0, 1+2+4);
+					world.setBlock(x-1, j+2, y, TeamConfig.unbreakableGlassId, 0, 1+2+4);
+					world.setBlock(x+1, j+2, y, TeamConfig.unbreakableGlassId, 0, 1+2+4);
+					world.setBlock(x, j+2, y+1, TeamConfig.unbreakableGlassId, 0, 1+2+4);
+					world.setBlock(x, j+2, y-1, TeamConfig.unbreakableGlassId, 0, 1+2+4);
 				}
 			}
 		}

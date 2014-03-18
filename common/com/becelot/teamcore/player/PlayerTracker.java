@@ -4,7 +4,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.world.EnumGameType;
 
-import com.becelot.teamcore.SpaceConfig;
+import com.becelot.teamcore.TeamConfig;
 import com.becelot.teamcore.dimension.DimensionTeleporter;
 import com.becelot.teamcore.team.Team;
 import com.becelot.teamcore.team.TeamManager;
@@ -36,16 +36,16 @@ public class PlayerTracker implements IPlayerTracker {
 	@Override
 	public void onPlayerLogin(EntityPlayer player) {
 		//TODO: Remove this line, just for debugging.
-		SpaceConfig.gameMod = player.getDisplayName();
-		switch (SpaceConfig.raceState) {
-			case SR_IDLE:
+		TeamConfig.gameMod = player.getDisplayName();
+		switch (TeamConfig.raceState) {
+			case TR_IDLE:
 				player.setGameType(EnumGameType.ADVENTURE);
 				break;
-			case SR_PREPARING:
+			case TR_PREPARING:
 				player.setGameType(EnumGameType.ADVENTURE);
 				playerLoginPreparing(player);
 				break;
-			case SR_STARTED:
+			case TR_STARTED:
 				playerLoginStarted(player);
 				break;
 			default:
@@ -60,7 +60,7 @@ public class PlayerTracker implements IPlayerTracker {
 	private void playerLoginPreparing(EntityPlayer player) {
 		if (player instanceof EntityPlayerMP) {
 			EntityPlayerMP playerMP = (EntityPlayerMP)player;
-			DimensionTeleporter.transferPlayerToDimension(playerMP, SpaceConfig.dimensionId, 0, 1, 0);
+			DimensionTeleporter.transferPlayerToDimension(playerMP, TeamConfig.dimensionId, 0, 1, 0);
 			
 		}
 		

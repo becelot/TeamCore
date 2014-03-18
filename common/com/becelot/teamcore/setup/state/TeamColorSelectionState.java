@@ -5,7 +5,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatMessageComponent;
 
-import com.becelot.teamcore.SpaceConfig;
+import com.becelot.teamcore.TeamConfig;
 import com.becelot.teamcore.setup.FSMTeamBuilderState;
 import com.becelot.teamcore.team.Team;
 import com.becelot.teamcore.team.TeamColor;
@@ -34,7 +34,7 @@ public class TeamColorSelectionState extends FSMTeamBuilderState {
 	@Override
 	public void interact(EntityPlayer entityPlayer, int team, int x, int y,
 			int z) {
-		if (team == 0 || team >= SpaceConfig.maxTeams) {
+		if (team == 0 || team >= TeamConfig.maxTeams) {
 			entityPlayer.sendChatToPlayer(colorAlreadyChosen);
 			return;
 		}
@@ -50,8 +50,8 @@ public class TeamColorSelectionState extends FSMTeamBuilderState {
 		}
 		
 		//Valid team color
-		entityPlayer.worldObj.setBlock(x, y, z, SpaceConfig.teamSelectionId, 0, 3);
-		MinecraftServer.getServer().worldServerForDimension(SpaceConfig.dimensionId).setBlockMetadataWithNotify(x, y, z, 0, 1+2);
+		entityPlayer.worldObj.setBlock(x, y, z, TeamConfig.teamSelectionId, 0, 3);
+		MinecraftServer.getServer().worldServerForDimension(TeamConfig.dimensionId).setBlockMetadataWithNotify(x, y, z, 0, 1+2);
 		entityPlayer.setPositionAndUpdate(x+0.5, y+0.5+2, z+0.5);
 		
 		//Setup team
@@ -80,8 +80,8 @@ public class TeamColorSelectionState extends FSMTeamBuilderState {
 			
 
 			//Next phase
-			SetupStructureBuilder.buildTeamSelection(MinecraftServer.getServer().worldServerForDimension(SpaceConfig.dimensionId), false);
-			SetupStructureBuilder.buildWorldCage(MinecraftServer.getServer().worldServerForDimension(0), SpaceConfig.unbreakableGlassId);
+			SetupStructureBuilder.buildTeamSelection(MinecraftServer.getServer().worldServerForDimension(TeamConfig.dimensionId), false);
+			SetupStructureBuilder.buildWorldCage(MinecraftServer.getServer().worldServerForDimension(0), TeamConfig.unbreakableGlassId);
 			
 			/*
 			if (((TeamMemberSelectionState)fsmTeamMemberSelection).checkComplete()) {

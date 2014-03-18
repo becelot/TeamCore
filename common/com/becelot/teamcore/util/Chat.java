@@ -1,6 +1,6 @@
 package com.becelot.teamcore.util;
 
-import com.becelot.teamcore.SpaceConfig;
+import com.becelot.teamcore.TeamConfig;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.packet.Packet3Chat;
@@ -46,7 +46,7 @@ public class Chat {
 	public static void sendToGameMod(String s) {
 		for (Object play : MinecraftServer.getServer().getConfigurationManager().playerEntityList) {
 			EntityPlayer player = (EntityPlayer)play;
-			if (player.getDisplayName().equals(SpaceConfig.gameMod)) {
+			if (player.getDisplayName().equals(TeamConfig.gameMod)) {
 				player.sendChatToPlayer(ChatMessageComponent.createFromText("[SERVER]: " + s));
 				return;
 			}

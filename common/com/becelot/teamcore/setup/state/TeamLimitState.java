@@ -5,7 +5,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatMessageComponent;
 
-import com.becelot.teamcore.SpaceConfig;
+import com.becelot.teamcore.TeamConfig;
 import com.becelot.teamcore.player.PlayerEvent;
 import com.becelot.teamcore.setup.FSMTeamBuilder;
 import com.becelot.teamcore.setup.FSMTeamBuilderState;
@@ -37,10 +37,10 @@ public class TeamLimitState extends FSMTeamBuilderState {
 			if (astring.length == 1) {
 				if (astring[0].toLowerCase().equals("ok")) {
 					Chat.sendToAllPlayersFromRegistryFormatted("command.teamlimit.successfull.server", 
-							SpaceConfig.teamCount, SpaceConfig.minMemberCount, SpaceConfig.maxMemberCount);
+							TeamConfig.teamCount, TeamConfig.minMemberCount, TeamConfig.maxMemberCount);
 
-					SetupStructureBuilder.buildMidCage(MinecraftServer.getServer().worldServerForDimension(SpaceConfig.dimensionId), SpaceConfig.unbreakableGlassId);
-					SetupStructureBuilder.buildTeamSelection(MinecraftServer.getServer().worldServerForDimension(SpaceConfig.dimensionId));
+					SetupStructureBuilder.buildMidCage(MinecraftServer.getServer().worldServerForDimension(TeamConfig.dimensionId), TeamConfig.unbreakableGlassId);
+					SetupStructureBuilder.buildTeamSelection(MinecraftServer.getServer().worldServerForDimension(TeamConfig.dimensionId));
 					this.switchState(fsmRegisterTeam);
 					PlayerEvent.registerTeamInteractionListener(FSMTeamBuilder.instance);
 					return;
@@ -60,9 +60,9 @@ public class TeamLimitState extends FSMTeamBuilderState {
 
 			if (minMemberCount > maxMemberCount) throw new Exception();
 
-			SpaceConfig.teamCount = teamCount;
-			SpaceConfig.minMemberCount = minMemberCount;
-			SpaceConfig.maxMemberCount = maxMemberCount;
+			TeamConfig.teamCount = teamCount;
+			TeamConfig.minMemberCount = minMemberCount;
+			TeamConfig.maxMemberCount = maxMemberCount;
 		} catch (Exception e) {
 			icommandsender.sendChatToPlayer(invalidArgument);
 			return;
@@ -70,7 +70,7 @@ public class TeamLimitState extends FSMTeamBuilderState {
 
 		//Send confirmation to GameMod
 		Chat.sendToPlayerFormatted((EntityPlayer)icommandsender, "command.teamlimit.successfull", 
-				SpaceConfig.teamCount, SpaceConfig.minMemberCount, SpaceConfig.maxMemberCount);
+				TeamConfig.teamCount, TeamConfig.minMemberCount, TeamConfig.maxMemberCount);
 
 
 	}

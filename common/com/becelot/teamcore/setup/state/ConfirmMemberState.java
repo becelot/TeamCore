@@ -6,7 +6,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.StatCollector;
 
-import com.becelot.teamcore.SpaceConfig;
+import com.becelot.teamcore.TeamConfig;
 import com.becelot.teamcore.dimension.DimensionTeleporter;
 import com.becelot.teamcore.setup.FSMTeamBuilderState;
 import com.becelot.teamcore.team.Team;
@@ -43,11 +43,11 @@ public class ConfirmMemberState extends FSMTeamBuilderState {
 	private void resetMember() {
 		for (Object o : MinecraftServer.getServer().getConfigurationManager().playerEntityList) {
 			EntityPlayer player = (EntityPlayer)o;
-			DimensionTeleporter.transferPlayerToDimension((EntityPlayerMP)player, SpaceConfig.dimensionId, 0, SetupStructureBuilder.height + 1, 0);;
+			DimensionTeleporter.transferPlayerToDimension((EntityPlayerMP)player, TeamConfig.dimensionId, 0, SetupStructureBuilder.height + 1, 0);;
 		}
 		
 		for (Team team : TeamManager.getInstance().getTeams()) {
-			double angle = 360f / SpaceConfig.maxTeams * team.getId();
+			double angle = 360f / TeamConfig.maxTeams * team.getId();
 			int x = (int)Math.round((SetupStructureBuilder.radius + SetupStructureBuilder.distance) * Math.cos(angle * Math.PI /360f));
 			int z = (int)Math.round((SetupStructureBuilder.radius + SetupStructureBuilder.distance) * Math.cos(angle * Math.PI /360f));
 			team.getTeamLeader().setPositionAndUpdate(x, 2, z);

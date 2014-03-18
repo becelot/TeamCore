@@ -9,7 +9,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 
-import com.becelot.teamcore.SpaceConfig;
+import com.becelot.teamcore.TeamConfig;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
@@ -28,7 +28,7 @@ public class TeamSelectionBlock extends Block {
 	@SuppressWarnings("unchecked")
 	@SideOnly(Side.CLIENT) 
 	public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, @SuppressWarnings("rawtypes") List par3List) {
-		for(int i=0; i < SpaceConfig.maxTeams; i++) {
+		for(int i=0; i < TeamConfig.maxTeams; i++) {
 			par3List.add(new ItemStack(par1, 1, i));
 		}
 	}
@@ -44,10 +44,10 @@ public class TeamSelectionBlock extends Block {
 	
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister par1IconRegister) {
-		icons = new Icon[SpaceConfig.maxTeams];
+		icons = new Icon[TeamConfig.maxTeams];
 		
 		
-		for (int i = 0; i < SpaceConfig.maxTeams; i++) {
+		for (int i = 0; i < TeamConfig.maxTeams; i++) {
 			icons[i] = par1IconRegister.registerIcon("spaceracemod:teamselection" + i);
 		}
 	}
@@ -56,7 +56,7 @@ public class TeamSelectionBlock extends Block {
 	 * Registers all blocks of this type
 	 */
 	public static void register() {
-		TeamSelectionBlock teamSelectionBlock = new TeamSelectionBlock(SpaceConfig.teamSelectionId, Material.ground);
+		TeamSelectionBlock teamSelectionBlock = new TeamSelectionBlock(TeamConfig.teamSelectionId, Material.ground);
 		GameRegistry.registerBlock(teamSelectionBlock, TeamSelectionItemBlock.class, "teamSelectionBlock");
 		
 		

@@ -3,7 +3,7 @@ package com.becelot.teamcore;
 import net.minecraftforge.common.Configuration;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
-public final class SpaceConfig {
+public final class TeamConfig {
 	public static int teamSelectionId = 500;
 	public static int unbreakableGlassId = 501;
 	public static String gameMod = "onlinefreak";
@@ -14,7 +14,7 @@ public final class SpaceConfig {
 	public static int pvpPreventionMinutes;
 	public static boolean pvpFriendlyFireOn;
 	
-	public static SpaceraceState raceState = SpaceraceState.SR_IDLE;
+	public static TeamState raceState = TeamState.TR_IDLE;
 	
 	public static int teamCount = 4;
 	public static int minMemberCount = 2;

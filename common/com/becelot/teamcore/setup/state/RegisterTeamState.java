@@ -7,7 +7,7 @@ import net.minecraft.network.packet.Packet3Chat;
 import net.minecraft.util.ChatMessageComponent;
 import net.minecraft.util.StatCollector;
 
-import com.becelot.teamcore.SpaceConfig;
+import com.becelot.teamcore.TeamConfig;
 import com.becelot.teamcore.setup.FSMTeamBuilderState;
 import com.becelot.teamcore.team.Team;
 import com.becelot.teamcore.team.TeamManager;
@@ -39,7 +39,7 @@ public class RegisterTeamState extends FSMTeamBuilderState{
 	@Override
 	public void commandSend(String command, ICommandSender icommandsender, String[] astring) {
 		//Make sure, that we are currently accepting new leaders
-		if (teamManager.getTeamCount() >= SpaceConfig.teamCount) return;
+		if (teamManager.getTeamCount() >= TeamConfig.teamCount) return;
 		
 		
 		if (icommandsender instanceof EntityPlayerMP) {
@@ -62,7 +62,7 @@ public class RegisterTeamState extends FSMTeamBuilderState{
 			}
 		}
 		
-		if (teamManager.getTeamCount() == SpaceConfig.teamCount) {
+		if (teamManager.getTeamCount() == TeamConfig.teamCount) {
 			Chat.sendToAllPlayersFromRegistry("command.registerteam.sucessfull.all");
 			Chat.sendToGameMod(StatCollector.translateToLocal("command.registerteam.sucessfull.gamemod"));
 			this.switchState(fsmConfirmLeaderState);

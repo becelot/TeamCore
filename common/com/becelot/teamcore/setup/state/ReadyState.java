@@ -8,8 +8,8 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.EnumGameType;
 
-import com.becelot.teamcore.SpaceConfig;
-import com.becelot.teamcore.SpaceraceState;
+import com.becelot.teamcore.TeamConfig;
+import com.becelot.teamcore.TeamState;
 import com.becelot.teamcore.player.PvpPrevention;
 import com.becelot.teamcore.setup.Countdown;
 import com.becelot.teamcore.setup.FSMTeamBuilderState;
@@ -41,7 +41,7 @@ public class ReadyState extends FSMTeamBuilderState implements ICountdownEvent {
 		
 		//Remove all cages
 		SetupStructureBuilder.buildWorldCage(MinecraftServer.getServer().worldServerForDimension(0), 0);
-		SpaceConfig.raceState = SpaceraceState.SR_STARTED;
+		TeamConfig.raceState = TeamState.TR_STARTED;
 		Chat.sendToAllPlayersFromRegistry("command.startrace.start");
 		
 		(new Countdown(10, new HashMap<Integer, String>(), new PvpPrevention())).startCountdown();
